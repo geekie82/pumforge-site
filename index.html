@@ -106,6 +106,7 @@
   .plan li{margin:6px 0;font-size:.94rem}
   .plan .btn{width:100%;text-align:center}
   .tag-popular{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:8px}
+  .tba{display:inline-block;background:rgba(251,191,36,.12);color:var(--amber);border:1px solid rgba(251,191,36,.3);font-size:.72rem;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:8px}
 
   /* Testimonials */
   .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
@@ -139,11 +140,10 @@
       <a href="#features">Features</a>
       <a href="#tools">Tools</a>
       <a href="#how">How it works</a>
-      <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="comments.html">Comments</a>
     </div>
-    <div class="nav-cta"><a href="#pricing">Get a license</a></div>
+    <div class="nav-cta"><a href="mailto:simon@pummail.com">Get in touch</a></div>
   </div>
 </nav>
 
@@ -156,7 +156,7 @@
     <p class="tag">pumTALK is a private, fully-local AI companion. Talk to it, clone your own voice, chat with your documents, and let it run your PC — all offline, no cloud, no data leaves home.</p>
     <p class="subline">Speaks in your voice · Remembers what you tell it · Searches the web · Reads and writes documents · Controls your desktop · Answers from your files with citations</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="#pricing">Buy pumTALK</a>
+      <a class="btn btn-primary" href="mailto:simon@pummail.com">Get early access</a>
       <a class="btn btn-ghost" href="#features">Explore features</a>
     </div>
     <div class="badges">
@@ -177,7 +177,7 @@
       <div class="benefit"><div class="icon">📚</div><h3>Knows your documents</h3><p>Upload PDFs, notes, and web pages. Ask questions and get answers with citations from your own sources.</p></div>
       <div class="benefit"><div class="icon">🛠️</div><h3>Actually does things</h3><p>Weather, stocks, math, web search, document creation — and real PC control: files, apps, clipboard, even the screen.</p></div>
       <div class="benefit"><div class="icon">🧠</div><h3>Remembers &amp; reasons</h3><p>Long-term memory, multi-step sub-agents, and an LLM council that debates complex questions before answering.</p></div>
-      <div class="benefit"><div class="icon">💸</div><h3>One-time, no SaaS</h3><p>Pay once, own it forever. No monthly cloud fees, no usage limits, no data harvesting.</p></div>
+      <div class="benefit"><div class="icon">💸</div><h3>No data harvesting</h3><p>Your chats, files, and voice stay on your machine. There's no cloud to mine your data — it's simply yours.</p></div>
     </div>
   </section>
 
@@ -260,38 +260,14 @@ flowchart TB
   </section>
 
   <!-- PRICING -->
-  <section class="center" id="pricing">
-    <h2>Simple, one-time pricing</h2>
-    <p class="sub">Own it forever. No cloud, no subscriptions, no per-seat fees.</p>
-    <div class="pricing">
-      <div class="plan">
-        <div class="pname">Personal</div>
-        <div class="price">$49</div>
-        <div class="ppd">one-time · 1 machine</div>
-        <ul>
-          <li>Everything included — voice, cloning, Notebook, tools, PC control</li>
-          <li>Free updates for 1 year</li>
-          <li>Personal, non-commercial use</li>
-          <li>Email support</li>
-        </ul>
-        <a class="btn btn-ghost" href="mailto:simon@pummail.com">Buy Personal</a>
-      </div>
-      <div class="plan popular">
-        <span class="tag-popular">MOST POPULAR</span>
-        <div class="pname">Commercial</div>
-        <div class="price">$149</div>
-        <div class="ppd">one-time · up to 5 machines</div>
-        <ul>
-          <li>Everything in Personal, plus</li>
-          <li>Commercial &amp; business use</li>
-          <li>Up to 5 devices / users</li>
-          <li>Priority support</li>
-          <li>Free updates for 1 year</li>
-        </ul>
-        <a class="btn btn-primary" href="mailto:simon@pummail.com">Buy Commercial</a>
-      </div>
+  <section class="center">
+    <h2>Stay in touch</h2>
+    <p class="sub">pumTALK is in active development. Availability and details are
+    coming soon — reach out and we'll keep you in the loop.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:simon@pummail.com">Email us</a>
+      <a class="btn btn-ghost" href="comments.html">Leave a comment</a>
     </div>
-    <p class="sub" style="margin-top:16px;font-size:.9rem">Need more seats or an enterprise license? <a href="mailto:simon@pummail.com">Contact us</a>.</p>
   </section>
 
   <!-- TESTIMONIALS -->
@@ -317,13 +293,47 @@ flowchart TB
     </div>
   </section>
 
+  <!-- DEPLOY -->
+  <section class="center" id="deploy">
+    <h2>Ways to get pumTALK</h2>
+    <p class="sub">However you like to run it — on your own hardware, or hosted for you. Details are coming soon.</p>
+    <div class="pricing">
+      <div class="plan">
+        <div class="pname">Self-hosted</div>
+        <span class="tba">DETAILS TBA</span>
+        <p class="ppd">Install &amp; run on your own machine · subscription</p>
+        <ul>
+          <li>Everything on your hardware — full privacy, works offline</li>
+          <li>Windows, Linux, or macOS</li>
+          <li>Your data never leaves your device</li>
+          <li>Use your own models (Ollama / LM Studio)</li>
+        </ul>
+        <a class="btn btn-ghost" href="mailto:simon@pummail.com">Get notified</a>
+      </div>
+      <div class="plan popular">
+        <span class="tag-popular">NO SETUP</span>
+        <div class="pname">Hosted · SaaS</div>
+        <span class="tba">DETAILS TBA</span>
+        <p class="ppd">Monthly subscription · instant access</p>
+        <ul>
+          <li>We host and manage everything for you</li>
+          <li>Instant access — no install, no setup, no hardware needed</li>
+          <li>Access from any device, anywhere</li>
+          <li>Always up to date</li>
+        </ul>
+        <a class="btn btn-primary" href="mailto:simon@pummail.com">Request access</a>
+      </div>
+    </div>
+    <p class="sub" style="margin-top:16px;font-size:.9rem">Pricing and availability are coming soon. <a href="mailto:simon@pummail.com">Email us</a> and we'll keep you posted.</p>
+  </section>
+
   <!-- FINAL CTA -->
   <section class="center">
     <h2>Own your AI. Keep your data.</h2>
-    <p class="sub">Get pumTALK today and never worry about a cloud again.</p>
+    <p class="sub">Run pumTALK yourself, or let us host it for you — either way, it's yours.</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="mailto:simon@pummail.com">Buy pumTALK</a>
-      <a class="btn btn-ghost" href="#faq">Ask a question</a>
+      <a class="btn btn-primary" href="#deploy">Explore options</a>
+      <a class="btn btn-ghost" href="mailto:simon@pummail.com">Get in touch</a>
     </div>
   </section>
 
