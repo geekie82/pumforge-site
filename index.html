@@ -240,6 +240,19 @@
     <div class="notice">⚠️ Risky desktop actions (deleting files, running commands, controlling the screen) always require your explicit approval first.</div>
   </section>
 
+  <!-- TOOL ADVANTAGE -->
+  <section class="center">
+    <h2>Out-of-the-box tool advantage</h2>
+    <p class="sub">With many local AI tools, actions are an afterthought — you write custom
+    Python functions, juggle environment variables, and install third-party plugins just to
+    let the AI read your screen or open an app. With pumTALK, it's native.</p>
+    <div class="grid3">
+      <div class="benefit"><div class="icon">⚙️</div><h3>Native system tools</h3><p><code>run_command</code>, opening &amp; closing apps, and Office document generation are built-in APIs — no permissions to configure, no plugins to maintain.</p></div>
+      <div class="benefit"><div class="icon">📄</div><h3>Office docs, no extra installs</h3><p>Create DOCX, XLSX, PPTX, and PDF out of the box. No separate download or OnlyOffice setup to break on the next update.</p></div>
+      <div class="benefit"><div class="icon">🖥️</div><h3>Desktop-first</h3><p>pumTALK treats your desktop as its primary workspace right after installation — files, apps, clipboard, and screen, ready to go.</p></div>
+    </div>
+  </section>
+
   <!-- HOW -->
   <section class="center" id="how">
     <h2>How it works</h2>
@@ -274,7 +287,21 @@ flowchart TB
     </div>
   </section>
 
-  <!-- PRICING -->
+  <!-- LATENCY -->
+  <section class="center">
+    <h2>Why pumTALK feels so fast</h2>
+    <p class="sub">Most local AI setups have a big delay: they wait for you to finish,
+    convert the whole clip to text, run the full reply through the LLM, and only then
+    hand it to the speech engine. pumTALK bypasses that bottleneck with three native
+    optimizations.</p>
+    <div class="grid3">
+      <div class="benefit"><div class="icon">⚡</div><h3>Energy VAD</h3><p>Voice Activity Detection recognizes the instant you start and stop talking — it never waits on long pauses or processes silence.</p></div>
+      <div class="benefit"><div class="icon">🔊</div><h3>Streaming audio pipeline</h3><p>Tokens stream straight from the LLM into lightweight voice generators (Piper / F5-TTS) as they're produced — speech starts before the whole reply is done.</p></div>
+      <div class="benefit"><div class="icon">🗣️</div><h3>Barge-in</h3><p>The capture loop runs in parallel with generation, so it listens while it speaks and you can interrupt instantly — no locked-up audio drivers.</p></div>
+    </div>
+  </section>
+
+  <!-- STAY IN TOUCH -->
   <section class="center">
     <h2>Stay in touch</h2>
     <p class="sub">pumTALK is in active development. Availability and details are
