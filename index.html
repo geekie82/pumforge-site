@@ -80,6 +80,7 @@
   .feat .check{flex-shrink:0;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
     background:rgba(52,211,153,.15);color:var(--green);font-weight:800}
   .feat b{color:var(--text)}
+  .feat .why{color:var(--accent);font-weight:650;font-size:.82rem;letter-spacing:.2px;text-transform:uppercase}
 
   /* Tools grid */
   .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
@@ -196,38 +197,53 @@
     </div>
   </section>
 
-  <!-- UNIQUE -->
-  <section class="center">
+  <!-- FEATURES (merged unique + included) -->
+  <section class="center" id="features">
     <h2>What makes pumTALK unique</h2>
     <p class="sub">Most "local AI" tools are chat boxes with a plugin menu. pumTALK is a complete
     offline workbench — a voice-first assistant that actually <i>does</i> things.</p>
     <div class="card" style="text-align:left">
-      <div class="feat"><span class="check">✓</span><div><b>Voice cloning that stays private</b> — clone your own voice in 15 seconds, entirely on-device. Your voice print never touches a cloud server.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>Speaks to you like a person</b> — natural barge-in: interrupt it mid-sentence, and it stops and listens, just like a real conversation.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>An LLM council</b> — for hard questions, several local models debate, then a chairperson synthesizes the answer. No other local assistant does this.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>Real desktop control</b> — files, apps, clipboard, screen-reading (OCR), commands. Native, not a pile of plugins — and risky actions always ask first.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>Notebook that cites its sources</b> — upload your PDFs and documents, ask questions, and get answers with inline citations back to your own files.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>Zero data-harvesting</b> — everything runs locally. Your chats, files, and voice stay on your machine. There's no cloud to mine your data.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>Built-in diagnostics &amp; observability</b> — structured logs with request tracing, and an audio health check with a live waveform so you're never guessing why your mic isn't working.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>Instant, streaming responses</b> — Energy VAD + a streaming pipeline means it starts replying before it finishes thinking, not after a long wait.</div></div>
-    </div>
-  </section>
 
-  <!-- FEATURES -->
-  <section class="center" id="features">
-    <h2>Everything included</h2>
-    <p class="sub">A complete local AI workbench in one app.</p>
-    <div class="card" style="text-align:left">
-      <div class="feat"><span class="check">✓</span><div><b>Voice &amp; conversation</b> — listening, wake-word, push-to-talk, typing; barge-in so you can interrupt mid-reply. The assistant speaks naturally out loud.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>Voice cloning</b> — F5-TTS and XTTS v2; record 15 seconds and pumTALK answers in your own voice. Plus curated hi-fi and character voices.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>Notebook (pumbookLM)</b> — multi-project research workspace with cited answers, summaries, audio overviews, and interactive mind maps.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>Knowledge Base</b> — PDF, Word, Excel, images (OCR), web pages, YouTube transcripts, and audio — all indexed and searchable.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>Documents</b> — create Word, Excel, PowerPoint, and PDF; convert between formats with OnlyOffice.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>Memory &amp; agents</b> — remember facts, run sub-agents for complex tasks, and use an LLM council for hard questions.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>Vision</b> — the assistant can look at the camera and answer questions about what it sees.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>Desktop control</b> — run commands, manage files, open apps, copy to clipboard, take and read screenshots. Risky actions always ask first.</div></div>
-      <div class="feat"><span class="check">✓</span><div><b>Remote &amp; multi-device</b> — reach it from any device over HTTPS, with per-browser chat isolation and browser mic/camera/speaker.</div></div>
+      <div class="feat"><span class="check">✓</span><div><b>Voice and conversation</b><br/>
+      <span class="why">Why it matters:</span> Talk to your assistant like a human, not a command line.<br/>
+      <span class="why">What you get:</span> Wake-word, push-to-talk, typing fallback, and true barge-in — interrupt mid-reply and it stops and listens. Voice cloning on-device in ~15 seconds (your voice never leaves the machine) plus curated hi-fi and character voices.</div></div>
+
+      <div class="feat"><span class="check">✓</span><div><b>Private, local-first architecture</b><br/>
+      <span class="why">Why it matters:</span> No surprises, no data mining — full control of your data and models.<br/>
+      <span class="why">What you get:</span> Everything runs locally: chats, files, voice prints, and indexes. Zero data harvesting, and explicit prompts before any risky action.</div></div>
+
+      <div class="feat"><span class="check">✓</span><div><b>LLM council for hard questions</b><br/>
+      <span class="why">Why it matters:</span> Better answers through debate, not a single oracle.<br/>
+      <span class="why">What you get:</span> Multiple local models deliberate, then a chairperson synthesizes a concise answer — higher confidence, fewer hallucinations.</div></div>
+
+      <div class="feat"><span class="check">✓</span><div><b>Notebook and knowledge management</b><br/>
+      <span class="why">Why it matters:</span> Research that cites its sources and stays organized.<br/>
+      <span class="why">What you get:</span> pumbookLM — a multi-project workspace with cited answers, summaries, audio overviews, and interactive mind maps. Upload PDFs, Word, Excel, images (OCR), web pages, transcripts, and audio; everything is indexed and searchable.</div></div>
+
+      <div class="feat"><span class="check">✓</span><div><b>Real desktop control</b><br/>
+      <span class="why">Why it matters:</span> An assistant that actually does work on your machine, safely.<br/>
+      <span class="why">What you get:</span> Native file and app management, clipboard operations, screenshots and OCR, command execution — with confirmations for risky actions.</div></div>
+
+      <div class="feat"><span class="check">✓</span><div><b>Productivity suite and document tools</b><br/>
+      <span class="why">Why it matters:</span> One app, fewer context switches.<br/>
+      <span class="why">What you get:</span> Create and convert Word, Excel, PowerPoint, and PDF with OnlyOffice integration — export and transform documents without juggling plugins.</div></div>
+
+      <div class="feat"><span class="check">✓</span><div><b>Vision and multimodal interaction</b><br/>
+      <span class="why">Why it matters:</span> Ask about what's on your screen or in front of your camera.<br/>
+      <span class="why">What you get:</span> Camera and screenshot understanding, OCR, and the ability to answer visual questions alongside text and voice.</div></div>
+
+      <div class="feat"><span class="check">✓</span><div><b>Observability and reliability</b><br/>
+      <span class="why">Why it matters:</span> Know what's happening under the hood when things go sideways.<br/>
+      <span class="why">What you get:</span> Structured logs, request tracing, audio health checks with live waveform, and diagnostics — so mic problems stop being mysterious.</div></div>
+
+      <div class="feat"><span class="check">✓</span><div><b>Instant, streaming responses</b><br/>
+      <span class="why">Why it matters:</span> Conversations feel alive when replies start immediately.<br/>
+      <span class="why">What you get:</span> Energy VAD plus a streaming pipeline so responses begin before the model finishes thinking — less waiting, more flow.</div></div>
+
     </div>
+    <p class="sub" style="margin-top:18px">pumTALK is a complete offline workbench — voice-first, privacy-first, and
+    action-capable. It's not a chat box with plugins; it's a local assistant that speaks, acts,
+    cites, and keeps your data where it belongs.</p>
   </section>
 
   <!-- TOOLS -->
