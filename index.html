@@ -124,11 +124,11 @@
     <p class="tag">pumTALK is a private, fully-local AI companion. Talk to it, clone your own voice, chat with your documents, and let it run your PC &mdash; all offline, no cloud, no data leaves home.</p>
     <p class="subline">A 100% local AI workbench &mdash; no cloud, no data-harvesting. Speaks in your voice &middot; Remembers what you tell it &middot; Searches the web &middot; Reads and writes documents &middot; Controls your desktop &middot; Answers from your files with citations</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="#pricing">Download v1.13.1</a>
+      <a class="btn btn-primary" href="#pricing">Download v1.14.0</a>
       <a class="btn btn-ghost" href="#features">Explore features</a>
     </div>
     <div class="badges">
-      <span class="badge"><b>v1.13.1</b></span>
+      <span class="badge"><b>v1.14.0</b></span>
       <span class="badge">100% offline</span>
       <span class="badge">Your data stays yours</span>
       <span class="badge">Windows &middot; Linux &middot; macOS &middot; Docker</span>
@@ -142,7 +142,7 @@
       <div class="benefit"><div class="icon">&#128274;</div><h3>Truly private</h3><p>Everything runs locally. No cloud, no telemetry, no account needed. Your chats, files, and voice stay on your machine.</p></div>
       <div class="benefit"><div class="icon">&#128172;</div><h3>Speaks in your voice</h3><p>Clone your voice with 6 engines (F5-TTS, XTTS v2, IndexTTS-2, Chatterbox, FishSpeech, CosyVoice) &mdash; your voice print never leaves your machine.</p></div>
       <div class="benefit"><div class="icon">&#128218;</div><h3>Knows your documents</h3><p>Upload PDFs, Word, Excel, images, notes, and web pages. Ask questions and get answers with citations from your own sources.</p></div>
-      <div class="benefit"><div class="icon">&#128736;</div><h3>Actually does things</h3><p>16 built-in tools + a 41-tool desktop suite: weather, stocks, math, web search, document creation, email, and real PC control &mdash; files, apps, clipboard, even the screen.</p></div>
+      <div class="benefit"><div class="icon">&#128736;</div><h3>Actually does things</h3><p>16 built-in tools + a 41-tool desktop suite: weather (with your real location), stocks, math, web search, document creation, email, and real PC control &mdash; files, apps, clipboard, even the screen.</p></div>
       <div class="benefit"><div class="icon">&#129504;</div><h3>Remembers &amp; reasons</h3><p>Long-term memory, multi-step sub-agents, and an LLM council that debates complex questions before answering.</p></div>
       <div class="benefit"><div class="icon">&#128176;</div><h3>No data harvesting</h3><p>Your chats, files, and voice stay on your machine. There is no cloud to mine your data &mdash; it is simply yours.</p></div>
     </div>
@@ -164,7 +164,7 @@
     <div class="card" style="text-align:left">
       <div class="feat"><span class="check">&#10003;</span><div><b>Voice and conversation</b><br/>
       <span class="why">THE VIBE:</span> Talk to your assistant like a human, not a command line.<br/>
-      <span class="why">THE TECH:</span> Wake-word, push-to-talk, typing fallback, and true barge-in. Voice cloning on-device in ~15 seconds with 6 engines (F5-TTS, XTTS v2, IndexTTS-2, Chatterbox, FishSpeech, CosyVoice) plus curated hi-fi and character voices.</div></div>
+      <span class="why">THE TECH:</span> Wake-word (works even with a silent mic in push-to-talk), push-to-talk, typing fallback, and true barge-in. Voice cloning on-device in ~15 seconds with 6 engines (F5-TTS, XTTS v2, IndexTTS-2, Chatterbox, FishSpeech, CosyVoice) plus curated hi-fi and character voices.</div></div>
       <div class="feat"><span class="check">&#10003;</span><div><b>Private, local-first architecture</b><br/>
       <span class="why">THE VIBE:</span> No surprises, no data mining &mdash; full control of your data and models.<br/>
       <span class="why">THE TECH:</span> Everything runs locally: chats, files, voice prints, indexes, and license data. Zero data harvesting, and explicit prompts before any risky action.</div></div>
@@ -291,7 +291,7 @@ flowchart TB
         <p class="ppd">Download for Windows, Linux, macOS, or Docker</p>
         <h3 style="margin:14px 0 4px;font-size:.9rem">What you get</h3>
         <ul><li>16 built-in tools + 41-tool desktop suite</li><li>6 voice cloning engines</li><li>Notebook with RAG &amp; citations</li><li>Desktop control</li><li>Document creation &amp; conversion</li><li>LLM Council &amp; sub-agents</li><li>Structured logging &amp; diagnostics</li></ul>
-        <a class="btn btn-primary" href="https://github.com/geekie82/pumtalk/releases">Download v1.13.1</a>
+        <a class="btn btn-primary" href="https://github.com/geekie82/pumtalk/releases">Download v1.14.0</a>
       </div>
     </div>
     <p class="sub" style="margin-top:16px;font-size:.9rem">After trial expiry: 3-day grace period, then Voice, Notebook &amp; Tools are disabled. Basic chat always works. <a href="mailto:simon@pummail.com">Contact us</a> for pricing details.</p>
@@ -312,7 +312,9 @@ flowchart TB
       <details><summary>Is my data private?</summary><p>Yes. Chats, files, memories, and your cloned voice stay on your own disk. Nothing is sent to a pumTALK cloud (there is none). If you configure a cloud LLM provider (OpenAI, Anthropic), messages are sent to that provider for inference only.</p></details>
       <details><summary>What hardware do I need?</summary><p>An 8GB+ machine is fine for text. For the best voice experience, an NVIDIA GPU (12GB+) is recommended for faster speech and cloning.</p></details>
       <details><summary>Which AI model does it use?</summary><p>It works with Ollama or LM Studio, so you can use any local model you like and swap models freely. Cloud providers (OpenAI, Anthropic) are also supported.</p></details>
-      <details><summary>Can it really control my PC?</summary><p>Yes &mdash; files, apps, clipboard, screenshots, and more. Every risky action asks for your approval before it runs. Desktop control is opt-in.</p></details>
+      <details><summary>Can it really control my PC?</summary><p>Yes &mdash; files, apps, windows, clipboard, screenshots, OCR, volume/brightness, and more. It runs freely with natural confirmations, but security-critical changes (editing sshd_config, enabling root login, sudoers) ask for your approval first. Desktop control is opt-in.</p></details>
+      <details><summary>How does it know my location for weather?</summary><p>On first load pumTALK asks for your browser's geolocation (a normal "allow location" prompt) and uses your real location for weather and forecasts. The desktop app can share the PC's location too.</p></details>
+      <details><summary>Does the wake word work with a silent mic?</summary><p>Yes. With Wake word enabled, say "Hey Pum" to wake pumTALK even in push-to-talk mode with the mic off.</p></details>
       <details><summary>How does the license work?</summary><p>You get a 7-day free trial with all features. After the trial, a 3-day grace period follows. Then Voice, Notebook, and Tools are disabled. Basic chat always works. Enter a license key in Settings to restore full features.</p></details>
       <details><summary>What voice cloning engines are supported?</summary><p>Six engines: F5-TTS (best quality), XTTS v2 (fastest), IndexTTS-2, Chatterbox, FishSpeech, and CosyVoice. Clone in ~15 seconds from a recording or uploaded file.</p></details>
       <details><summary>Can I use it on a server?</summary><p>Yes. pumTALK runs as a systemd service on Linux. Bind to 0.0.0.0 for LAN access with authentication. Docker images are also available.</p></details>
@@ -322,7 +324,7 @@ flowchart TB
     <h2>Own your AI. Keep your data.</h2>
     <p class="sub">Run pumTALK yourself &mdash; 7-day free trial, no credit card required. Your data never leaves your machine.</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="https://github.com/geekie82/pumtalk/releases">Download v1.13.1</a>
+      <a class="btn btn-primary" href="https://github.com/geekie82/pumtalk/releases">Download v1.14.0</a>
       <a class="btn btn-ghost" href="mailto:simon@pummail.com">Get in touch</a>
     </div>
   </section>
