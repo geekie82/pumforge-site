@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>pumTALK — Your AI that never leaves your machine</title>
-<meta name="description" content="pumTALK is a private, fully-local AI assistant that talks, clones your voice, controls your PC, and remembers everything. No cloud. No data harvesting. Your machine, your AI."/>
-<meta property="og:title" content="pumTALK — Your AI that never leaves your machine"/>
+<title>pumFORGE — Your AI that never leaves your machine</title>
+<meta name="description" content="pumFORGE is a private, fully-local AI assistant that talks, clones your voice, controls your PC, and remembers everything. No cloud. No data harvesting. Your machine, your AI."/>
+<meta property="og:title" content="pumFORGE — Your AI that never leaves your machine"/>
 <meta property="og:description" content="Voice-first, fully-local AI assistant. 6 voice cloning engines, 41 desktop tools, notebook with RAG. No cloud, no data harvesting."/>
 <meta property="og:type" content="website"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -265,15 +265,16 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
 .plan-features li::before{content:"✓";color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
 .plan .btn{width:100%;justify-content:center}
 
-/* ──── Testimonials ──── */
-.testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
-.testimonial{padding:28px;display:flex;flex-direction:column;gap:14px}
-.testimonial p{margin:0;font-style:italic;color:var(--text);font-size:.95rem;line-height:1.6;
-  flex:1}
-.testimonial .author{display:flex;align-items:center;gap:10px}
-.testimonial .avatar{width:36px;height:36px;border-radius:10px;
-  background:var(--gradient);display:grid;place-items:center;font-weight:700;font-size:.85rem;color:#fff}
-.testimonial .who{color:var(--faint);font-size:.82rem}
+/* ──── Community Q&A ──── */
+.qa-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;text-align:left}
+.qa-card{padding:26px;display:flex;flex-direction:column;gap:12px}
+.qa-card:hover{transform:translateY(-4px)}
+.qa-q{margin:0;display:flex;align-items:flex-start;gap:10px;font-weight:700;
+  font-size:.98rem;line-height:1.45;color:var(--text)}
+.qa-q .q-mark{color:var(--accent);font-weight:800;flex-shrink:0;font-family:"Space Grotesk",sans-serif}
+.qa-a{margin:0;display:flex;align-items:flex-start;gap:10px;color:var(--dim);
+  font-size:.88rem;line-height:1.6;flex:1}
+.qa-a .a-mark{color:var(--faint);font-weight:700;flex-shrink:0}
 
 /* ──── FAQ ──── */
 .faq-list{max-width:780px;margin:0 auto}
@@ -330,8 +331,8 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
 <nav id="mainNav">
   <div class="nav-inner">
     <div class="brand">
-      <img src="https://raw.githubusercontent.com/geekie82/pumtalk/master/frontend/pumtalk.png" alt="pumTALK" onerror="this.style.display='none'"/>
-      <span>pumTALK</span>
+      <img src="https://raw.githubusercontent.com/geekie82/pumforge/master/frontend/pumforge.png" alt="pumFORGE" onerror="this.style.display='none'"/>
+      <span>pumFORGE</span>
     </div>
     <div class="nav-links" id="navLinks">
       <a href="#features">Features</a>
@@ -342,7 +343,7 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
       <a href="comments.html">Reviews</a>
     </div>
     <div class="nav-cta">
-      <a class="btn btn-primary btn-sm" href="#pricing">Get pumTALK</a>
+      <a class="btn btn-primary btn-sm" href="#pricing">Get pumFORGE</a>
       <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
     </div>
   </div>
@@ -358,7 +359,7 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
 
     <h1>Your AI that never<br/>leaves your machine</h1>
 
-    <p class="tagline">pumTALK is a private, voice-first AI companion that runs entirely on your hardware. Talk to it, clone your own voice, chat with documents, and control your PC &mdash; fully offline.</p>
+    <p class="tagline">pumFORGE is a private, voice-first AI companion that runs entirely on your hardware. Talk to it, clone your own voice, chat with documents, and control your PC &mdash; fully offline.</p>
 
     <p class="subline">Two ways to get started:</p>
 
@@ -378,7 +379,7 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
         <div class="terminal-dot r"></div>
         <div class="terminal-dot y"></div>
         <div class="terminal-dot g"></div>
-        <span class="terminal-title">pumTALK &mdash; voice assistant</span>
+        <span class="terminal-title">pumFORGE &mdash; voice assistant</span>
       </div>
       <div class="terminal-body">
         <div class="term-line"><span class="term-user">you:</span> Hey Pum, what's the weather in Bangkok right now?</div>
@@ -426,12 +427,12 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
 
 <div class="separator"></div>
 
-<!-- ──── Why pumTALK ──── -->
+<!-- ──── Why pumFORGE ──── -->
 <section class="section-center" id="features">
   <div class="wrap">
-    <div class="tag-label reveal">Why pumTALK</div>
+    <div class="tag-label reveal">Why pumFORGE</div>
     <h2 class="reveal">Your private AI.<br/>Your rules. Your data.</h2>
-    <p class="sub reveal">Most AI assistants send your conversations to a cloud. pumTALK runs entirely on your own hardware &mdash; private, offline-capable, and with zero data-harvesting.</p>
+    <p class="sub reveal">Most AI assistants send your conversations to a cloud. pumFORGE runs entirely on your own hardware &mdash; private, offline-capable, and with zero data-harvesting.</p>
 
     <div class="bento" style="margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
       <div class="glass bento-card accent-glow reveal">
@@ -521,8 +522,8 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
 <section>
   <div class="wrap-narrow">
     <div class="tag-label center reveal" style="text-align:center;display:block">Deep features</div>
-    <h2 class="reveal" style="text-align:center">What makes pumTALK unique</h2>
-    <p class="sub reveal" style="text-align:center">Most "local AI" tools are chat boxes with a plugin menu. pumTALK is a complete offline workbench &mdash; a voice-first assistant that actually <em>does</em> things.</p>
+    <h2 class="reveal" style="text-align:center">What makes pumFORGE unique</h2>
+    <p class="sub reveal" style="text-align:center">Most "local AI" tools are chat boxes with a plugin menu. pumFORGE is a complete offline workbench &mdash; a voice-first assistant that actually <em>does</em> things.</p>
 
     <div class="glass reveal" style="padding:28px 32px">
       <div class="feat-list">
@@ -652,15 +653,15 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
 <section class="section-center" id="compare">
   <div class="wrap">
     <div class="tag-label reveal">Head to head</div>
-    <h2 class="reveal">How pumTALK stacks up</h2>
-    <p class="sub reveal">Most "local AI" tools are chat boxes with a plugin menu. pumTALK is a complete voice-first workbench.</p>
+    <h2 class="reveal">How pumFORGE stacks up</h2>
+    <p class="sub reveal">Most "local AI" tools are chat boxes with a plugin menu. pumFORGE is a complete voice-first workbench.</p>
 
     <div class="table-wrap reveal">
       <table class="comparison">
         <thead>
           <tr class="highlight">
             <th>Feature</th>
-            <th class="highlight">pumTALK</th>
+            <th class="highlight">pumFORGE</th>
             <th>Generic local AI</th>
             <th>Cloud AI assistants</th>
           </tr>
@@ -767,7 +768,7 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
 <section class="section-center" id="pricing">
   <div class="wrap">
     <div class="tag-label reveal">Pricing</div>
-    <h2 class="reveal">Get pumTALK</h2>
+    <h2 class="reveal">Get pumFORGE</h2>
     <p class="sub reveal">Start with a 7-day free trial. All features enabled, no credit card required. After the trial, choose a plan that works for you.</p>
 
     <div class="pricing-toggle reveal">
@@ -786,7 +787,7 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
         <div class="plan-period">Install on your own hardware &middot; full control</div>
         <p class="plan-desc">Run everything locally. Bring your own Ollama. Your data never leaves your machine.</p>
         <ul class="plan-features">
-          <li>Full pumTALK on your machine</li>
+          <li>Full pumFORGE on your machine</li>
           <li>16 built-in tools + 41-tool desktop suite</li>
           <li>6 voice cloning engines</li>
           <li>Notebook with RAG &amp; citations</li>
@@ -815,7 +816,7 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
           <li><b>Real-time voice</b> &mdash; STT + TTS, sub-second latency</li>
           <li><b>6 voice cloning engines</b> &mdash; all included</li>
           <li><b>Wake word &amp; barge-in</b> &mdash; natural conversation</li>
-          <li><b>Your own subdomain</b> &mdash; <code>you.pumtalk.com</code></li>
+          <li><b>Your own subdomain</b> &mdash; <code>you.pumforge.com</code></li>
           <li><b>BYO Ollama</b> &mdash; connect your own LLM</li>
           <li><b>Works everywhere</b> &mdash; phone, tablet, laptop, any browser</li>
           <li><b>No setup</b> &mdash; sign up and start talking in minutes</li>
@@ -831,7 +832,7 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
 
     <div class="glass reveal" style="margin-top:24px;padding:18px 22px;display:flex;align-items:flex-start;gap:12px;font-size:.88rem;color:var(--dim);line-height:1.6">
       <span style="color:var(--accent);font-size:1.1rem;flex-shrink:0;margin-top:2px">&#9432;</span>
-      <div><b style="color:var(--text)">Important:</b> pumTALK does <b>not</b> host Ollama, LLMs, or OpenAI APIs. You bring your own (BYO) &mdash; we provide the voice infrastructure (STT + TTS) on SaaS, or the full software on self-hosted. Your conversations stay private.</div>
+      <div><b style="color:var(--text)">Important:</b> pumFORGE does <b>not</b> host Ollama, LLMs, or OpenAI APIs. You bring your own (BYO) &mdash; we provide the voice infrastructure (STT + TTS) on SaaS, or the full software on self-hosted. Your conversations stay private.</div>
     </div>
 
     <p class="reveal" style="text-align:center;color:var(--faint);font-size:.88rem;margin-top:16px">After trial: 3-day grace period, then Voice, Notebook &amp; Tools are disabled. Basic chat always works. <a href="mailto:simon@pummail.com">Contact us</a> for pricing details.</p>
@@ -840,37 +841,47 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
 
 <div class="separator"></div>
 
-<!-- ──── Testimonials ──── -->
+<!-- ──── Community Q&A ──── -->
 <section class="section-center">
   <div class="wrap">
-    <div class="tag-label reveal">Social proof</div>
-    <h2 class="reveal">Loved by early users</h2>
+    <div class="tag-label reveal">Community</div>
+    <h2 class="reveal">Community Q&amp;A</h2>
+    <p class="sub reveal">The most common questions from the pumFORGE community &mdash; answered straight, no marketing fluff.</p>
 
-    <div class="testimonials">
-      <div class="glass testimonial reveal">
-        <p>"It finally feels like an assistant that lives on my computer, not in someone's cloud. The voice cloning is genuinely surprising."</p>
-        <div class="author">
-          <div class="avatar">A</div>
-          <span class="who">Private beta user</span>
-        </div>
+    <div class="qa-grid">
+      <div class="glass qa-card reveal">
+        <p class="qa-q"><span class="q-mark">Q:</span> Is my data really private?</p>
+        <p class="qa-a"><span class="a-mark">A:</span> Yes. pumFORGE runs entirely on your machine. No data ever leaves your network. No cloud, no telemetry, no tracking.</p>
       </div>
-      <div class="glass testimonial reveal reveal-delay-1">
-        <p>"I asked it to summarise my own PDFs with citations, then make a Word report, then send it by email. It just did it."</p>
-        <div class="author">
-          <div class="avatar">B</div>
-          <span class="who">Early adopter</span>
-        </div>
+      <div class="glass qa-card reveal reveal-delay-1">
+        <p class="qa-q"><span class="q-mark">Q:</span> Do I need a powerful PC?</p>
+        <p class="qa-a"><span class="a-mark">A:</span> Minimum: 4-core CPU, 8GB RAM. For voice features: any modern GPU with 4GB+ VRAM, or CPU-only at slower speed.</p>
       </div>
-      <div class="glass testimonial reveal reveal-delay-2">
-        <p>"Works offline, keeps my data private, and just feels like a personal AI should. This is the way."</p>
-        <div class="author">
-          <div class="avatar">C</div>
-          <span class="who">Reviewer</span>
-        </div>
+      <div class="glass qa-card reveal reveal-delay-2">
+        <p class="qa-q"><span class="q-mark">Q:</span> Can I use my own LLM?</p>
+        <p class="qa-a"><span class="a-mark">A:</span> Yes. Connect to any OpenAI-compatible API &mdash; Ollama, llama.cpp, vLLM, or cloud providers.</p>
+      </div>
+      <div class="glass qa-card reveal reveal-delay-3">
+        <p class="qa-q"><span class="q-mark">Q:</span> How does the license work?</p>
+        <p class="qa-a"><span class="a-mark">A:</span> Offline Ed25519 signed license. No phone home. 3-day grace period. Never bricks your install.</p>
+      </div>
+      <div class="glass qa-card reveal">
+        <p class="qa-q"><span class="q-mark">Q:</span> What about voice cloning?</p>
+        <p class="qa-a"><span class="a-mark">A:</span> 6 engines supported: F5-TTS, XTTS, IndexTTS, Chatterbox, FishSpeech, CosyVoice. Clone any voice with ~10 seconds of audio.</p>
+      </div>
+      <div class="glass qa-card reveal reveal-delay-1">
+        <p class="qa-q"><span class="q-mark">Q:</span> Can I use it on my phone?</p>
+        <p class="qa-a"><span class="a-mark">A:</span> Yes. pumFORGE has a responsive web UI that works on any device with a browser &mdash; phone, tablet, or desktop.</p>
+      </div>
+      <div class="glass qa-card reveal reveal-delay-2">
+        <p class="qa-q"><span class="q-mark">Q:</span> Does it work offline?</p>
+        <p class="qa-a"><span class="a-mark">A:</span> Yes for voice, STT, and desktop tools. Connect an LLM (Ollama) for full offline capability.</p>
+      </div>
+      <div class="glass qa-card reveal reveal-delay-3">
+        <p class="qa-q"><span class="q-mark">Q:</span> What's the difference between Desktop and Hosted?</p>
+        <p class="qa-a"><span class="a-mark">A:</span> Desktop runs everything locally. Hosted runs voice on our servers while you bring your own LLM.</p>
       </div>
     </div>
-
-    <p class="reveal" style="margin-top:24px"><a href="comments.html" style="color:var(--dim);font-size:.9rem">See more reviews &amp; leave your own &rarr;</a></p>
   </div>
 </section>
 
@@ -889,7 +900,7 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
       </div>
       <div class="faq-item reveal">
         <div class="faq-q">Is my data private?</div>
-        <div class="faq-a"><p>Yes. Chats, files, memories, and your cloned voice stay on your own disk. Nothing is sent to a pumTALK cloud (there is none). If you configure a cloud LLM provider, messages go to that provider for inference only.</p></div>
+        <div class="faq-a"><p>Yes. Chats, files, memories, and your cloned voice stay on your own disk. Nothing is sent to a pumFORGE cloud (there is none). If you configure a cloud LLM provider, messages go to that provider for inference only.</p></div>
       </div>
       <div class="faq-item reveal">
         <div class="faq-q">What hardware do I need?</div>
@@ -905,11 +916,11 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
       </div>
       <div class="faq-item reveal">
         <div class="faq-q">How does it know my location for weather?</div>
-        <div class="faq-a"><p>On first load, pumTALK asks for your browser's geolocation (a normal "allow location" prompt) and uses your real location for weather and forecasts. The desktop app can share the PC's location too.</p></div>
+        <div class="faq-a"><p>On first load, pumFORGE asks for your browser's geolocation (a normal "allow location" prompt) and uses your real location for weather and forecasts. The desktop app can share the PC's location too.</p></div>
       </div>
       <div class="faq-item reveal">
         <div class="faq-q">Does the wake word work with a silent mic?</div>
-        <div class="faq-a"><p>Yes. With wake word enabled, say "Hey Pum" to wake pumTALK even in push-to-talk mode with the mic off.</p></div>
+        <div class="faq-a"><p>Yes. With wake word enabled, say "Hey Pum" to wake pumFORGE even in push-to-talk mode with the mic off.</p></div>
       </div>
       <div class="faq-item reveal">
         <div class="faq-q">How does the license work?</div>
@@ -921,15 +932,15 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
       </div>
       <div class="faq-item reveal">
         <div class="faq-q">What is BYO (Bring Your Own)?</div>
-        <div class="faq-a"><p>pumTALK does <b>not</b> host Ollama, LLMs, or OpenAI APIs. You bring your own &mdash; connect your local Ollama, LM Studio, or any OpenAI-compatible API. On SaaS, we handle voice (STT + TTS); on self-hosted, you run everything.</p></div>
+        <div class="faq-a"><p>pumFORGE does <b>not</b> host Ollama, LLMs, or OpenAI APIs. You bring your own &mdash; connect your local Ollama, LM Studio, or any OpenAI-compatible API. On SaaS, we handle voice (STT + TTS); on self-hosted, you run everything.</p></div>
       </div>
       <div class="faq-item reveal">
         <div class="faq-q">What is the difference between Hosted Services and Desktop Edition?</div>
-        <div class="faq-a"><p><b>Desktop Edition / Self-hosted:</b> Install pumTALK on your own hardware, run everything locally. <b>Hosted Services:</b> We host the voice infrastructure (STT + TTS); you connect your own Ollama for the LLM. Both give you the full pumTALK experience.</p></div>
+        <div class="faq-a"><p><b>Desktop Edition / Self-hosted:</b> Install pumFORGE on your own hardware, run everything locally. <b>Hosted Services:</b> We host the voice infrastructure (STT + TTS); you connect your own Ollama for the LLM. Both give you the full pumFORGE experience.</p></div>
       </div>
       <div class="faq-item reveal">
         <div class="faq-q">Can I use it on a server?</div>
-        <div class="faq-a"><p>Yes. pumTALK runs as a systemd service on Linux. Bind to 0.0.0.0 for LAN access with authentication. Docker images are also available.</p></div>
+        <div class="faq-a"><p>Yes. pumFORGE runs as a systemd service on Linux. Bind to 0.0.0.0 for LAN access with authentication. Docker images are also available.</p></div>
       </div>
     </div>
   </div>
@@ -959,10 +970,10 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="comments.html">Reviews</a>
-      <a href="https://github.com/geekie82/pumtalk">GitHub</a>
+      <a href="https://github.com/geekie82/pumforge">GitHub</a>
       <a href="mailto:simon@pummail.com">Contact</a>
     </div>
-    <p>pumTALK &middot; Proprietary software. All rights reserved.</p>
+    <p>pumFORGE &middot; Proprietary software. All rights reserved.</p>
   </div>
 </footer>
 
