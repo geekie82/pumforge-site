@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>pumTALK — Your private AI companion. Talks, sees, remembers, and does.</title>
-<meta name="description" content="pumTALK is a private, fully-local AI assistant that talks to you, clones your voice, chats with your documents, and controls your PC — all offline, no cloud."/>
+<meta name="description" content="pumTALK is a private, fully-local AI assistant that talks to you, clones your voice, chats with your documents, and controls your PC. Two ways to get started: self-hosted or SaaS (managed voice, bring your own Ollama)."/>
 <style>
   :root{
     --bg:#070b16;--panel:#111a2e;--panel2:#0e1626;
@@ -122,7 +122,9 @@
     <img class="logo" src="https://raw.githubusercontent.com/geekie82/pumtalk/master/frontend/pumtalk.png" alt="pumTALK" onerror="this.style.display='none'"/>
     <h1>Your AI that never leaves your machine</h1>
     <p class="tag">pumTALK is a private, fully-local AI companion. Talk to it, clone your own voice, chat with your documents, and let it run your PC &mdash; all offline, no cloud, no data leaves home.</p>
-    <p class="subline">A 100% local AI workbench &mdash; no cloud, no data-harvesting. Speaks in your voice &middot; Remembers what you tell it &middot; Searches the web &middot; Reads and writes documents &middot; Controls your desktop &middot; Answers from your files with citations</p>
+    <p class="subline">Two ways to get started:</p>
+    <p class="subline"><b>Self-hosted:</b> Install on your own hardware &middot; full control &middot; bring your own Ollama<br/>
+    <b>SaaS:</b> Managed voice infrastructure &middot; you bring your own Ollama &middot; no GPU needed for voice</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#pricing">Download v1.14.0</a>
       <a class="btn btn-ghost" href="#features">Explore features</a>
@@ -271,29 +273,32 @@ flowchart TB
   </section>
   <section class="center" id="pricing">
     <h2>Get pumTALK</h2>
-    <p class="sub">Start with a 7-day free trial. All features enabled, no credit card required. After the trial, activate a license key to continue.</p>
+    <p class="sub">Start with a 7-day free trial. All features enabled, no credit card required. After the trial, choose a plan that works for you.</p>
     <div class="pricing">
       <div class="plan">
         <span class="tba">7-DAY FREE TRIAL</span>
         <div class="pname">Self-hosted</div>
-        <p class="ppd">Install on your own machine &middot; runs offline</p>
-        <h3 style="margin:14px 0 4px;font-size:.9rem">Personal</h3>
-        <ul><li>1 user, 1 machine</li><li>Full privacy, works offline</li><li>Voice, Notebook, Tools, Desktop</li></ul>
-        <h3 style="margin:14px 0 4px;font-size:.9rem">Commercial</h3>
-        <ul><li>For businesses / paid work</li><li>Multiple users &amp; devices</li><li>Priority support</li></ul>
-        <h3 style="margin:14px 0 4px;font-size:.9rem">Enterprise</h3>
-        <ul><li>Multi-seat, advanced controls</li><li>Custom terms &amp; SLAs</li></ul>
+        <p class="ppd">Install on your own hardware &middot; full control &middot; runs offline</p>
+        <h3 style="margin:14px 0 4px;font-size:.9rem">What you get</h3>
+        <ul><li>Full pumTALK on your machine</li><li>16 built-in tools + 41-tool desktop suite</li><li>6 voice cloning engines</li><li>Notebook with RAG &amp; citations</li><li>Desktop control</li><li>Document creation &amp; conversion</li><li>LLM Council &amp; sub-agents</li><li>BYO Ollama / LM Studio / OpenAI</li></ul>
+        <h3 style="margin:14px 0 4px;font-size:.9rem">Plans</h3>
+        <ul><li><b>Personal</b> &mdash; 1 user, 1 machine</li><li><b>Home</b> &mdash; 3-5 users, home network</li><li><b>Homelab</b> &mdash; 5-10 users, homelab setup</li><li><b>Commercial</b> &mdash; 10-20 users, business use</li><li><b>Enterprise</b> &mdash; 20+ users, custom terms</li></ul>
+        <p class="ppd" style="font-size:.85rem">Licenses available monthly, quarterly, annually &middot; Regional pricing available</p>
         <a class="btn btn-ghost" href="mailto:simon@pummail.com">Get a license key</a>
       </div>
       <div class="plan popular">
         <span class="tag-popular">RECOMMENDED</span>
-        <div class="pname">Available now</div>
-        <p class="ppd">Download for Windows, Linux, macOS, or Docker</p>
+        <div class="pname">SaaS</div>
+        <p class="ppd">Managed voice infrastructure &middot; you bring your own Ollama</p>
         <h3 style="margin:14px 0 4px;font-size:.9rem">What you get</h3>
-        <ul><li>16 built-in tools + 41-tool desktop suite</li><li>6 voice cloning engines</li><li>Notebook with RAG &amp; citations</li><li>Desktop control</li><li>Document creation &amp; conversion</li><li>LLM Council &amp; sub-agents</li><li>Structured logging &amp; diagnostics</li></ul>
-        <a class="btn btn-primary" href="https://github.com/geekie82/pumtalk/releases">Download v1.14.0</a>
+        <ul><li>Real-time voice (STT + TTS) on our servers</li><li>6 voice cloning engines</li><li>Wake word &amp; barge-in</li><li>Subdomain: <code>you.pumtalk.com</code></li><li>No GPU needed for voice</li><li>BYO Ollama &mdash; connect your own LLM</li></ul>
+        <h3 style="margin:14px 0 4px;font-size:.9rem">Plans</h3>
+        <ul><li><b>Personal</b> &mdash; 1 user</li><li><b>Home</b> &mdash; 3-5 users</li><li><b>Homelab</b> &mdash; 5-10 users</li><li><b>Commercial</b> &mdash; 10-20 users</li><li><b>Enterprise</b> &mdash; 20+ users, custom</li></ul>
+        <p class="ppd" style="font-size:.85rem">Monthly, quarterly, annual subscriptions &middot; Regional pricing available</p>
+        <a class="btn btn-primary" href="mailto:simon@pummail.com">Get started</a>
       </div>
     </div>
+    <div class="notice" style="margin-top:20px"><b>Important:</b> pumTALK does <b>not</b> host Ollama, LLMs, or OpenAI APIs. You bring your own (BYO) &mdash; we provide the voice infrastructure (STT + TTS) on SaaS, or the full software on self-hosted. Your conversations stay private.</div>
     <p class="sub" style="margin-top:16px;font-size:.9rem">After trial expiry: 3-day grace period, then Voice, Notebook &amp; Tools are disabled. Basic chat always works. <a href="mailto:simon@pummail.com">Contact us</a> for pricing details.</p>
   </section>
   <section class="center">
@@ -318,11 +323,13 @@ flowchart TB
       <details><summary>How does the license work?</summary><p>You get a 7-day free trial with all features. After the trial, a 3-day grace period follows. Then Voice, Notebook, and Tools are disabled. Basic chat always works. Enter a license key in Settings to restore full features.</p></details>
       <details><summary>What voice cloning engines are supported?</summary><p>Six engines: F5-TTS (best quality), XTTS v2 (fastest), IndexTTS-2, Chatterbox, FishSpeech, and CosyVoice. Clone in ~15 seconds from a recording or uploaded file.</p></details>
       <details><summary>Can I use it on a server?</summary><p>Yes. pumTALK runs as a systemd service on Linux. Bind to 0.0.0.0 for LAN access with authentication. Docker images are also available.</p></details>
+      <details><summary>What is BYO (Bring Your Own)?</summary><p>pumTALK does <b>not</b> host Ollama, LLMs, or OpenAI APIs. You bring your own &mdash; connect your local Ollama, LM Studio, or any OpenAI-compatible API. On SaaS, we handle voice (STT + TTS); on self-hosted, you run everything.</p></details>
+      <details><summary>What is the difference between SaaS and Self-hosted?</summary><p><b>Self-hosted:</b> Install pumTALK on your own hardware, run everything locally. <b>SaaS:</b> We host the voice infrastructure (STT + TTS) on our servers; you connect your own Ollama for the LLM. Both options give you the full pumTALK experience.</p></details>
     </div>
   </section>
   <section class="center">
     <h2>Own your AI. Keep your data.</h2>
-    <p class="sub">Run pumTALK yourself &mdash; 7-day free trial, no credit card required. Your data never leaves your machine.</p>
+    <p class="sub">Start with a 7-day free trial. Two ways to get started: self-hosted (full control) or SaaS (managed voice, you bring Ollama). Your data never leaves your machine.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://github.com/geekie82/pumtalk/releases">Download v1.14.0</a>
       <a class="btn btn-ghost" href="mailto:simon@pummail.com">Get in touch</a>
