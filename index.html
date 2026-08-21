@@ -4,9 +4,9 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>pumFORGE — Your AI that never leaves your machine</title>
-<meta name="description" content="pumFORGE is a private, fully-local AI assistant that talks, clones your voice, controls your PC, and remembers everything. No cloud. No data harvesting. Your machine, your AI."/>
+<meta name="description" content="pumFORGE is a private, fully-local AI assistant that talks, clones your voice, controls your PC, writes and runs code, and remembers everything. 79 built-in tools. No cloud. No data harvesting. Your machine, your AI."/>
 <meta property="og:title" content="pumFORGE — Your AI that never leaves your machine"/>
-<meta property="og:description" content="Voice-first, fully-local AI assistant. 6 voice cloning engines, 41 desktop tools, notebook with RAG. No cloud, no data harvesting."/>
+<meta property="og:description" content="Voice-first, fully-local AI assistant. 6 voice cloning engines, 79 built-in tools, 27-tool coding suite, 11 browser tools, notebook with RAG. No cloud, no data harvesting."/>
 <meta property="og:type" content="website"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -354,7 +354,7 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
   <div class="wrap">
     <div class="hero-badge">
       <span class="dot"></span>
-      <span>v1.14.0 &middot; 7-day free trial &middot; No credit card</span>
+      <span>v1.0.0-rc.1 &middot; 7-day free trial &middot; No credit card</span>
     </div>
 
     <h1>Your AI that never<br/>leaves your machine</h1>
@@ -405,14 +405,14 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
 
 <!-- ──── Metrics ──── -->
 <div class="wrap">
-  <div class="metrics reveal">
+    <div class="metrics reveal">
     <div class="metric">
       <div class="num counter" data-target="6">0</div>
       <div class="label">Voice cloning engines</div>
     </div>
     <div class="metric">
-      <div class="num counter" data-target="41">0</div>
-      <div class="label">Desktop tools built-in</div>
+      <div class="num counter" data-target="79">0</div>
+      <div class="label">Total tools built-in</div>
     </div>
     <div class="metric">
       <div class="num">0%</div>
@@ -503,9 +503,14 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
         <div class="card-desc">Long-term memory, multi-step sub-agents, and context that carries across conversations. Your assistant learns what matters to you.</div>
       </div>
       <div class="glass bento-card accent-glow-v reveal reveal-delay-4">
-        <div class="icon">&#128274;</div>
-        <div class="card-title">Truly private</div>
-        <div class="card-desc">No cloud, no telemetry, no account needed. Your chats, files, and voice stay on your machine.</div>
+        <div class="icon">&#128295;</div>
+        <div class="card-title">27-tool coding suite</div>
+        <div class="card-desc">Explain, review, audit, refactor, debug, test, generate, convert, and run code across Python, JavaScript, and Bash. Full IDE-grade tooling built into your assistant.</div>
+      </div>
+      <div class="glass bento-card accent-glow reveal reveal-delay-5">
+        <div class="icon">&#128225;</div>
+        <div class="card-title">11 browser tools</div>
+        <div class="card-desc">Clipboard, screenshots, notifications, file I/O, URL opening, and downloads &mdash; executed by your browser, routed through the assistant. Works from any device.</div>
       </div>
       <div class="glass bento-card accent-glow reveal reveal-delay-1">
         <div class="icon">&#9729;</div>
@@ -561,6 +566,24 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
             <div class="feat-vibe">THE VIBE</div>
             Research that cites its sources and stays organized.
             <div class="feat-tech">Multi-project workspace with cited answers, summaries, audio overviews, and interactive mind maps. Upload PDFs, Word, Excel, images (OCR), web pages, transcripts, and audio; everything indexed via RAG.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-check">&#10003;</div>
+          <div class="feat-content">
+            <b>27-tool coding suite</b>
+            <div class="feat-vibe">THE VIBE</div>
+            Your assistant writes, reviews, and runs code for you.
+            <div class="feat-tech">Explain, review, audit (OWASP), refactor, optimize, convert between languages, generate from natural language, scaffold projects, write tests, debug errors, create SQL and regex, generate shell commands, create REST APIs, analyze dependencies and complexity, add type hints, migrate frameworks, and generate Mermaid diagrams. Run Python, JavaScript, and Bash in a sandboxed executor.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-check">&#10003;</div>
+          <div class="feat-content">
+            <b>11 browser-side tools</b>
+            <div class="feat-vibe">THE VIBE</div>
+            Phone becomes a remote control for your PC.
+            <div class="feat-tech">Clipboard read/write, screenshots, geolocation, notifications, vibration, URL opening, file downloads, file read/write, and mailto &mdash; all executed by the browser on the client device and routed through the server.</div>
           </div>
         </div>
         <div class="feat-item">
@@ -669,6 +692,8 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
         <tbody>
           <tr><td>Voice cloning engines</td><td class="yes highlight">6 engines</td><td class="no">0</td><td class="partial">1&ndash;3 (cloud only)</td></tr>
           <tr><td>Desktop control tools</td><td class="yes highlight">41 tools</td><td class="partial">0&ndash;10</td><td class="no">0</td></tr>
+          <tr><td>Coding suite</td><td class="yes highlight">27 tools</td><td class="no">0</td><td class="partial">Basic</td></tr>
+          <tr><td>Browser-side tools</td><td class="yes highlight">11 tools</td><td class="no">0</td><td class="no">0</td></tr>
           <tr><td>Notebook + RAG</td><td class="yes highlight">Yes + citations</td><td class="partial">Basic RAG</td><td class="yes">Yes (cloud)</td></tr>
           <tr><td>Document creation</td><td class="yes highlight">DOCX/XLSX/PPTX/PDF</td><td class="no">No</td><td class="partial">Limited</td></tr>
           <tr><td>LLM Council</td><td class="yes highlight">Yes</td><td class="no">No</td><td class="no">No</td></tr>
@@ -691,10 +716,39 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
 <section class="section-center" id="tools">
   <div class="wrap">
     <div class="tag-label reveal">Built-in tools</div>
-    <h2 class="reveal">41 tools, zero setup</h2>
+    <h2 class="reveal">79 tools, zero setup</h2>
     <p class="sub reveal">The assistant calls these automatically &mdash; you can also just ask.</p>
 
     <div class="tools-grid reveal">
+      <div class="glass tool-card">
+        <h4>Coding suite (27 tools)</h4>
+        <ul>
+          <li><b>code_explain</b> &mdash; explain code in plain English</li>
+          <li><b>code_review</b> &mdash; bugs, security, performance</li>
+          <li><b>code_audit</b> &mdash; full OWASP security audit</li>
+          <li><b>code_refactor</b> &mdash; improve readability &amp; DRY</li>
+          <li><b>code_optimize</b> &mdash; speed &amp; memory</li>
+          <li><b>code_convert</b> &mdash; language to language</li>
+          <li><b>code_format</b> &mdash; lint &amp; format code</li>
+          <li><b>code_debug</b> &mdash; diagnose errors &amp; fix</li>
+          <li><b>code_test</b> &mdash; generate unit &amp; edge tests</li>
+          <li><b>code_generate</b> &mdash; write code from description</li>
+          <li><b>code_scaffold</b> &mdash; project boilerplate</li>
+          <li><b>code_regex</b> &mdash; generate &amp; explain regex</li>
+          <li><b>code_sql</b> &mdash; natural language to SQL</li>
+          <li><b>code_shell</b> &mdash; generate shell commands</li>
+          <li><b>code_api</b> &mdash; REST API boilerplate</li>
+          <li><b>code_run</b> &mdash; execute Python / JS / Bash</li>
+          <li><b>code_deps</b> &mdash; analyze dependencies</li>
+          <li><b>code_architecture</b> &mdash; system design patterns</li>
+          <li><b>code_types</b> &mdash; add type hints</li>
+          <li><b>code_migrate</b> &mdash; framework version migration</li>
+          <li><b>code_visualize</b> &mdash; Mermaid diagrams</li>
+          <li><b>code_complexity</b> &mdash; cyclomatic &amp; cognitive</li>
+          <li><b>code_document</b> &mdash; add docs &amp; comments</li>
+          <li><b>code_translate_natural</b> &mdash; pseudocode to code</li>
+        </ul>
+      </div>
       <div class="glass tool-card">
         <h4>Knowledge &amp; research</h4>
         <ul>
@@ -735,6 +789,19 @@ h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
         <ul>
           <li><b>add_memory</b> / recall / update / delete</li>
           <li>Long-term facts, preferences, and context</li>
+        </ul>
+      </div>
+      <div class="glass tool-card">
+        <h4>Browser-side tools (11 tools)</h4>
+        <ul>
+          <li><b>clipboard_read</b> / <b>clipboard_write</b></li>
+          <li><b>screenshot</b> &mdash; capture visible tab</li>
+          <li><b>get_location</b> &mdash; browser geolocation</li>
+          <li><b>notify</b> &mdash; desktop notifications</li>
+          <li><b>vibrate</b> &mdash; mobile haptic feedback</li>
+          <li><b>open_url</b> / <b>download_url</b></li>
+          <li><b>file_read</b> / <b>file_write</b> &mdash; user-picked files</li>
+          <li><b>mailto</b> &mdash; open email compose</li>
         </ul>
       </div>
       <div class="glass tool-card" style="grid-column:span 2">
