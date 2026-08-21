@@ -1,351 +1,1020 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>pumTALK — Your private AI companion. Talks, sees, remembers, and does.</title>
-<meta name="description" content="pumTALK is a private, fully-local AI assistant that talks to you, clones your voice, chats with your documents, and controls your PC. Two ways to get started: self-hosted or SaaS (managed voice, bring your own Ollama)."/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>pumTALK — Your AI that never leaves your machine</title>
+<meta name="description" content="pumTALK is a private, fully-local AI assistant that talks, clones your voice, controls your PC, and remembers everything. No cloud. No data harvesting. Your machine, your AI."/>
+<meta property="og:title" content="pumTALK — Your AI that never leaves your machine"/>
+<meta property="og:description" content="Voice-first, fully-local AI assistant. 6 voice cloning engines, 41 desktop tools, notebook with RAG. No cloud, no data harvesting."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-  :root{
-    --bg:#070b16;--panel:#111a2e;--panel2:#0e1626;
-    --text:#eef3fb;--dim:#8fa3c0;--faint:#5d7291;
-    --accent:#5b9dff;--accent2:#8b6dff;--green:#34d399;--amber:#fbbf24;
-    --border:#1f2b45;--border2:#2a3a5e;
-    --radius:16px;--shadow:0 14px 44px rgba(0,0,0,.4);
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    background:
-      radial-gradient(1200px 640px at 75% -10%, #14275a 0%, transparent 60%),
-      radial-gradient(900px 520px at 5% 0%, #231445 0%, transparent 55%),
-      var(--bg);
-    color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1060px;margin:0 auto;padding:0 20px 90px}
-  nav{position:sticky;top:0;z-index:50;background:rgba(7,11,22,.75);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-  .nav-inner{max-width:1060px;margin:0 auto;padding:8px 20px;display:flex;align-items:center;justify-content:space-between}
-  .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:1.05rem;line-height:1}
-  .brand img{width:60px;height:auto;object-fit:contain}
-  .nav-links a{color:var(--dim);margin-left:22px;font-size:.92rem}
-  .nav-links a:hover{color:var(--text);text-decoration:none}
-  .nav-cta a{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;font-weight:700;padding:9px 18px;border-radius:10px;font-size:.9rem}
-  @media(max-width:720px){.nav-links{display:none}}
-  .hero{text-align:center;padding:88px 0 30px}
-  .logo{width:120px;height:120px;border-radius:30px;object-fit:contain;box-shadow:0 0 0 1px var(--border2),0 18px 50px rgba(0,0,0,.5)}
-  .hero h1{font-size:3.4rem;margin:24px 0 14px;letter-spacing:.3px;font-weight:800;line-height:1.08;background:linear-gradient(90deg,#fff,#bcd4ff 55%,#c9b8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero .tag{color:var(--dim);font-size:1.22rem;max-width:700px;margin:0 auto 12px}
-  .hero .subline{color:var(--faint);font-size:1rem;max-width:640px;margin:0 auto 30px}
-  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .btn{display:inline-block;font-weight:700;padding:14px 28px;border-radius:12px;font-size:1.02rem;text-decoration:none;transition:transform .15s,box-shadow .15s}
-  .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 10px 30px rgba(91,157,255,.4)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(91,157,255,.5)}
-  .btn-ghost{background:var(--panel);color:var(--text);border:1px solid var(--border2)}
-  .btn-ghost:hover{transform:translateY(-2px);border-color:var(--accent)}
-  .badges{margin:30px 0 0}
-  .badge{display:inline-block;background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--border);border-radius:999px;padding:7px 15px;font-size:.84rem;margin:5px;color:var(--dim)}
-  .badge b{color:var(--text)}
-  section{padding:18px 0}
-  h2{font-size:1.9rem;margin:40px 0 8px;font-weight:800;letter-spacing:.2px}
-  .center{text-align:center}
-  .center h2{margin-top:56px}
-  .center .sub{max-width:680px;margin:0 auto 26px}
-  .sub{color:var(--dim);font-size:1.05rem}
-  h3{font-size:1.05rem;margin:14px 0 8px;color:var(--text)}
-  .card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin:14px 0;box-shadow:var(--shadow)}
-  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
-  .benefit{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:transform .18s,border-color .18s}
-  .benefit:hover{transform:translateY(-4px);border-color:var(--border2)}
-  .benefit .icon{font-size:1.6rem;margin-bottom:6px}
-  .benefit h3{margin:0 0 6px;font-size:1.05rem}
-  .benefit p{margin:0;color:var(--dim);font-size:.93rem}
-  .feat{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border)}
-  .feat:last-child{border-bottom:none}
-  .feat .check{flex-shrink:0;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:rgba(52,211,153,.15);color:var(--green);font-weight:800}
-  .feat b{color:var(--text)}
-  .feat .why{color:var(--accent);font-weight:650;font-size:.82rem;letter-spacing:.2px;text-transform:uppercase}
-  .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
-  .tool-card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--border);border-radius:14px;padding:18px 20px;transition:transform .15s,border-color .15s}
-  .tool-card:hover{transform:translateY(-3px);border-color:var(--border2)}
-  .tool-card h4{margin:0 0 10px;font-size:.82rem;letter-spacing:.4px;text-transform:uppercase;color:var(--accent)}
-  .tool-card ul{margin:0;padding-left:18px}
-  .tool-card li{margin:5px 0;font-size:.9rem;color:var(--dim)}
-  .tool-card li b{color:var(--text)}
-  .tool-card code{background:#0c1424;border:1px solid var(--border);border-radius:5px;padding:1px 5px;font-size:.78em;color:#bcd4ff}
-  .mermaid{background:#0c1424;border:1px solid var(--border);border-radius:12px;padding:16px;margin:14px 0;overflow-x:auto}
-  .pricing{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  @media(max-width:700px){.pricing{grid-template-columns:1fr}}
-  .plan{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--border);border-radius:20px;padding:28px}
-  .plan.popular{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 20px 50px rgba(91,157,255,.2)}
-  .plan .pname{font-size:.85rem;text-transform:uppercase;letter-spacing:.5px;color:var(--accent);font-weight:700}
-  .plan .price{font-size:2.4rem;font-weight:800;margin:8px 0 2px}
-  .plan .ppd{color:var(--faint);font-size:.9rem;margin-bottom:16px}
-  .plan ul{margin:0 0 18px;padding-left:20px}
-  .plan li{margin:6px 0;font-size:.94rem}
-  .plan .btn{width:100%;text-align:center}
-  .tag-popular{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:8px}
-  .tba{display:inline-block;background:rgba(52,211,153,.12);color:var(--green);border:1px solid rgba(52,211,153,.3);font-size:.72rem;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:8px}
-  .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
-  .quote{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--border);border-radius:14px;padding:20px}
-  .quote p{margin:0 0 12px;font-style:italic;color:var(--text);font-size:.95rem}
-  .quote .who{color:var(--faint);font-size:.85rem}
-  details{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--border);border-radius:12px;margin:10px 0;padding:0 18px}
-  details summary{cursor:pointer;font-weight:600;padding:14px 0;list-style:none}
-  details summary::after{content:"+";float:right;color:var(--accent);font-weight:700}
-  details[open] summary::after{content:"\2013"}
-  details p{margin:0 0 14px;color:var(--dim);font-size:.95rem}
-  .notice{margin:14px 0;padding:14px 18px;border-radius:12px;font-size:.92rem;color:var(--dim);background:linear-gradient(180deg,#141c30,#101627);border:1px solid var(--border)}
-  .footer{color:var(--faint);font-size:.85rem;text-align:center;margin-top:70px;border-top:1px solid var(--border);padding-top:22px}
-  a{color:var(--accent);text-decoration:none}
-  a:hover{text-decoration:underline}
-  ul{margin:6px 0;padding-left:20px}
-  li{margin:6px 0}
-  li::marker{color:var(--accent)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07090f;--bg2:#0c0f1a;--bg3:#111628;
+  --glass:rgba(14,18,34,.55);--glass2:rgba(20,26,50,.45);
+  --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.1);
+  --text:#f0f2f8;--dim:#8892a8;--faint:#4a5468;
+  --accent:#6c8cff;--accent2:#a78bfa;--green:#34d399;--amber:#fbbf24;--red:#f87171;
+  --gradient:linear-gradient(135deg,var(--accent),var(--accent2));
+  --radius:20px;--radius-sm:12px;
+  --shadow:0 20px 60px rgba(0,0,0,.5);
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);
+  line-height:1.65;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:var(--accent);text-decoration:none;transition:color .2s}
+a:hover{color:var(--accent2)}
+
+/* ──── Animated Background ──── */
+.bg-orbs{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.18;will-change:transform}
+.orb-1{width:600px;height:600px;background:#6c8cff;top:-10%;left:20%;animation:orbFloat1 25s ease-in-out infinite}
+.orb-2{width:500px;height:500px;background:#a78bfa;top:30%;right:-5%;animation:orbFloat2 30s ease-in-out infinite}
+.orb-3{width:450px;height:450px;background:#34d399;bottom:-10%;left:40%;animation:orbFloat3 28s ease-in-out infinite}
+.orb-4{width:350px;height:350px;background:#f472b6;top:60%;left:-8%;animation:orbFloat4 22s ease-in-out infinite}
+@keyframes orbFloat1{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(60px,40px) scale(1.1)}50%{transform:translate(-30px,80px) scale(.95)}75%{transform:translate(40px,-20px) scale(1.05)}}
+@keyframes orbFloat2{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(-50px,60px) scale(1.08)}50%{transform:translate(30px,-40px) scale(.92)}75%{transform:translate(-20px,30px) scale(1.03)}}
+@keyframes orbFloat3{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(40px,-50px) scale(1.05)}50%{transform:translate(-60px,30px) scale(1.1)}75%{transform:translate(20px,50px) scale(.95)}}
+@keyframes orbFloat4{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(50px,-40px) scale(1.08)}66%{transform:translate(-30px,60px) scale(.93)}}
+
+.noise{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:.4}
+
+/* ──── Layout ──── */
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+.wrap-narrow{max-width:860px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+
+/* ──── Navigation ──── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;
+  background:rgba(7,9,15,.6);backdrop-filter:blur(24px) saturate(1.4);
+  border-bottom:1px solid var(--border);transition:all .3s}
+nav.scrolled{background:rgba(7,9,15,.85);box-shadow:0 4px 30px rgba(0,0,0,.3)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:14px 0;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;font-family:"Space Grotesk",sans-serif}
+.brand img{width:40px;height:40px;border-radius:10px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--dim);font-size:.88rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{display:flex;gap:10px;align-items:center}
+@media(max-width:768px){.nav-links{display:none}}
+
+/* ──── Buttons ──── */
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.95rem;
+  padding:14px 28px;border-radius:14px;border:none;cursor:pointer;
+  transition:all .25s cubic-bezier(.4,0,.2,1);text-decoration:none;font-family:inherit}
+.btn-primary{background:var(--gradient);color:#fff;
+  box-shadow:0 8px 32px rgba(108,140,255,.35),inset 0 1px 0 rgba(255,255,255,.15)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(108,140,255,.5),inset 0 1px 0 rgba(255,255,255,.2);color:#fff}
+.btn-ghost{background:var(--glass);color:var(--text);border:1px solid var(--border2);
+  backdrop-filter:blur(12px)}
+.btn-ghost:hover{transform:translateY(-2px);border-color:var(--accent);color:var(--text)}
+.btn-sm{padding:10px 20px;font-size:.85rem;border-radius:10px}
+.btn-lg{padding:18px 36px;font-size:1.05rem;border-radius:16px}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:30px 0}
+
+/* ──── Hero ──── */
+.hero{padding:140px 0 60px;text-align:center;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;
+  background:var(--glass);border:1px solid var(--border2);border-radius:999px;
+  padding:8px 18px;font-size:.82rem;color:var(--dim);margin-bottom:28px;
+  backdrop-filter:blur(12px);font-weight:500}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--green);
+  animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+.hero h1{font-size:clamp(2.6rem,6vw,4.2rem);font-family:"Space Grotesk",sans-serif;
+  font-weight:700;line-height:1.08;letter-spacing:-.02em;margin:0 0 20px;
+  background:linear-gradient(135deg,#fff 0%,#c8d4ff 45%,#d4c4ff 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .tagline{color:var(--dim);font-size:clamp(1.05rem,2vw,1.25rem);
+  max-width:680px;margin:0 auto 14px;line-height:1.5;font-weight:400}
+.hero .subline{color:var(--faint);font-size:.95rem;max-width:600px;margin:0 auto 8px}
+.hero .edition-row{display:flex;gap:20px;justify-content:center;margin:20px 0 36px;flex-wrap:wrap}
+.edition-pill{display:inline-flex;align-items:center;gap:6px;
+  background:var(--glass);border:1px solid var(--border);border-radius:999px;
+  padding:8px 16px;font-size:.82rem;color:var(--dim);font-weight:500}
+.edition-pill b{color:var(--text)}
+
+/* ──── Terminal Hero ──── */
+.terminal{max-width:680px;margin:40px auto 0;background:rgba(10,14,26,.85);
+  border:1px solid var(--border2);border-radius:var(--radius);
+  box-shadow:0 25px 80px rgba(0,0,0,.6);overflow:hidden;
+  backdrop-filter:blur(20px);text-align:left}
+.terminal-bar{display:flex;align-items:center;gap:8px;padding:14px 18px;
+  border-bottom:1px solid var(--border);background:rgba(15,20,38,.6)}
+.terminal-dot{width:12px;height:12px;border-radius:50%}
+.terminal-dot.r{background:#f87171}.terminal-dot.y{background:#fbbf24}.terminal-dot.g{background:#34d399}
+.terminal-title{margin-left:12px;font-size:.78rem;color:var(--faint);font-family:"JetBrains Mono",monospace}
+.terminal-body{padding:20px;font-family:"JetBrains Mono",monospace;font-size:.82rem;line-height:1.8}
+.term-line{margin:4px 0;opacity:0;animation:termFade .4s ease forwards}
+.term-user{color:var(--accent)}
+.term-ai{color:var(--green)}
+.term-tool{color:var(--amber)}
+.term-dim{color:var(--faint)}
+@keyframes termFade{to{opacity:1}}
+.term-line:nth-child(1){animation-delay:.3s}
+.term-line:nth-child(2){animation-delay:.8s}
+.term-line:nth-child(3){animation-delay:1.6s}
+.term-line:nth-child(4){animation-delay:2.2s}
+.term-line:nth-child(5){animation-delay:2.8s}
+.term-line:nth-child(6){animation-delay:3.5s}
+.term-line:nth-child(7){animation-delay:4.1s}
+.term-line:nth-child(8){animation-delay:4.8s}
+.term-line:nth-child(9){animation-delay:5.3s}
+.term-cursor{display:inline-block;width:8px;height:16px;background:var(--accent);
+  margin-left:2px;animation:blink 1s step-end infinite;vertical-align:text-bottom}
+@keyframes blink{50%{opacity:0}}
+
+/* ──── Badges ──── */
+.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:28px 0 0}
+.badge{display:inline-flex;align-items:center;gap:6px;
+  background:var(--glass);border:1px solid var(--border);border-radius:999px;
+  padding:8px 16px;font-size:.8rem;color:var(--dim);
+  backdrop-filter:blur(8px);font-weight:500}
+.badge b{color:var(--text)}
+
+/* ──── Metrics ──── */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:60px 0}
+@media(max-width:768px){.metrics{grid-template-columns:repeat(2,1fr)}}
+.metric{text-align:center;padding:28px 16px;
+  background:var(--glass);border:1px solid var(--border);
+  border-radius:var(--radius);backdrop-filter:blur(12px);
+  transition:transform .25s,border-color .25s}
+.metric:hover{transform:translateY(-4px);border-color:var(--border2)}
+.metric .num{font-size:2.4rem;font-weight:800;font-family:"Space Grotesk",sans-serif;
+  background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+.metric .label{color:var(--dim);font-size:.82rem;margin-top:4px;font-weight:500}
+
+/* ──── Section ──── */
+section{padding:100px 0}
+.section-center{text-align:center}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);font-family:"Space Grotesk",sans-serif;
+  font-weight:700;letter-spacing:-.02em;margin:0 0 12px}
+.sub{color:var(--dim);font-size:1.05rem;max-width:640px;margin:0 auto 40px;line-height:1.6}
+h3{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 8px}
+
+/* ──── Glass Cards ──── */
+.glass{background:var(--glass);border:1px solid var(--border);
+  border-radius:var(--radius);backdrop-filter:blur(16px);
+  box-shadow:var(--shadow);transition:transform .25s,border-color .25s}
+.glass:hover{border-color:var(--border2)}
+
+/* ──── Bento Grid ──── */
+.bento{display:grid;gap:16px}
+.bento-2x2{grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto}
+@media(max-width:900px){.bento-2x2{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.bento-2x2{grid-template-columns:1fr}}
+.bento-card{padding:28px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden}
+.bento-card .icon{font-size:2rem;margin-bottom:4px}
+.bento-card .card-title{font-size:1.05rem;font-weight:700;color:var(--text)}
+.bento-card .card-desc{color:var(--dim);font-size:.9rem;line-height:1.55}
+.bento-card.span-2{grid-column:span 2}
+@media(max-width:900px){.bento-card.span-2{grid-column:span 1}}
+.bento-card.tall{grid-row:span 2}
+@media(max-width:900px){.bento-card.tall{grid-row:auto}}
+.bento-card.accent-glow::before{content:"";position:absolute;top:-40%;right:-20%;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(108,140,255,.12) 0%,transparent 70%);pointer-events:none}
+.bento-card.accent-glow-v::before{background:radial-gradient(circle,rgba(167,139,250,.12) 0%,transparent 70%)}
+
+/* ──── Feature List ──── */
+.feat-list{display:flex;flex-direction:column;gap:0}
+.feat-item{display:flex;gap:16px;align-items:flex-start;padding:20px 0;
+  border-bottom:1px solid var(--border)}
+.feat-item:last-child{border-bottom:none}
+.feat-check{flex-shrink:0;width:32px;height:32px;border-radius:10px;
+  display:grid;place-items:center;background:rgba(52,211,153,.1);color:var(--green);
+  font-size:.9rem;font-weight:800;border:1px solid rgba(52,211,153,.2)}
+.feat-content{flex:1}
+.feat-content b{font-size:1rem}
+.feat-vibe{color:var(--accent);font-weight:700;font-size:.72rem;letter-spacing:.4px;
+  text-transform:uppercase;margin-top:2px}
+.feat-tech{color:var(--dim);font-size:.88rem;line-height:1.55}
+
+/* ──── Comparison Table ──── */
+.comparison{width:100%;border-collapse:separate;border-spacing:0;margin:20px 0;font-size:.88rem}
+.comparison th,.comparison td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border)}
+.comparison th{color:var(--dim);font-weight:600;font-size:.78rem;text-transform:uppercase;
+  letter-spacing:.5px;position:sticky;top:80px;background:var(--bg);z-index:2}
+.comparison th:first-child,.comparison td:first-child{color:var(--text);font-weight:600}
+.comparison td{text-align:center}
+.comparison td:first-child{text-align:left}
+.comparison .yes{color:var(--green);font-weight:700}
+.comparison .no{color:var(--faint)}
+.comparison .partial{color:var(--amber);font-weight:600}
+.comparison .highlight{background:rgba(108,140,255,.06)}
+.comparison .highlight th{color:var(--accent);font-weight:700}
+.table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);
+  background:var(--glass);backdrop-filter:blur(16px)}
+
+/* ──── Tool Grid ──── */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.tool-card{padding:20px}
+.tool-card h4{margin:0 0 12px;font-size:.76rem;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--accent);font-weight:700}
+.tool-card ul{list-style:none;padding:0;margin:0}
+.tool-card li{margin:6px 0;font-size:.88rem;color:var(--dim);padding-left:16px;position:relative}
+.tool-card li::before{content:"";position:absolute;left:0;top:8px;
+  width:6px;height:6px;border-radius:50%;background:var(--border2)}
+.tool-card li b{color:var(--text)}
+.tool-card code{background:rgba(108,140,255,.08);border:1px solid rgba(108,140,255,.15);
+  border-radius:5px;padding:2px 6px;font-size:.78em;color:var(--accent);
+  font-family:"JetBrains Mono",monospace}
+
+/* ──── Voice Pipeline ──── */
+.pipeline{display:flex;align-items:center;gap:0;justify-content:center;flex-wrap:wrap;
+  margin:30px 0;padding:24px;background:var(--glass);border:1px solid var(--border);
+  border-radius:var(--radius);backdrop-filter:blur(16px)}
+.pipe-node{padding:14px 20px;border-radius:var(--radius-sm);
+  background:rgba(108,140,255,.08);border:1px solid rgba(108,140,255,.15);
+  font-size:.85rem;font-weight:600;color:var(--text);white-space:nowrap}
+.pipe-arrow{color:var(--faint);font-size:1.2rem;margin:0 6px}
+@media(max-width:600px){.pipeline{flex-direction:column;gap:8px}.pipe-arrow{transform:rotate(90deg)}}
+
+/* ──── Pricing ──── */
+.pricing-toggle{display:flex;justify-content:center;margin-bottom:40px}
+.toggle-group{display:flex;background:var(--glass);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;backdrop-filter:blur(12px)}
+.toggle-btn{padding:12px 28px;font-size:.9rem;font-weight:600;color:var(--dim);
+  cursor:pointer;border:none;background:transparent;font-family:inherit;transition:all .25s}
+.toggle-btn.active{background:var(--gradient);color:#fff}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:768px){.pricing-grid{grid-template-columns:1fr}}
+.plan{padding:36px 32px;display:flex;flex-direction:column}
+.plan.recommended{border-color:var(--accent);
+  box-shadow:0 0 0 1px var(--accent),0 20px 60px rgba(108,140,255,.15)}
+.plan-badge{display:inline-flex;align-items:center;
+  background:var(--gradient);color:#fff;font-size:.72rem;font-weight:800;
+  padding:5px 12px;border-radius:999px;letter-spacing:.3px;margin-bottom:12px;
+  align-self:flex-start}
+.plan-trial{display:inline-flex;align-items:center;
+  background:rgba(52,211,153,.1);color:var(--green);
+  border:1px solid rgba(52,211,153,.25);font-size:.72rem;font-weight:800;
+  padding:5px 12px;border-radius:999px;letter-spacing:.3px;margin-bottom:12px;
+  align-self:flex-start}
+.plan-name{font-size:.82rem;text-transform:uppercase;letter-spacing:.6px;
+  color:var(--accent);font-weight:700;margin-bottom:8px}
+.plan-price{font-size:2.2rem;font-weight:800;font-family:"Space Grotesk",sans-serif;margin:0}
+.plan-period{color:var(--faint);font-size:.85rem;margin-bottom:20px}
+.plan-desc{color:var(--dim);font-size:.9rem;margin-bottom:20px;line-height:1.55}
+.plan-features{list-style:none;padding:0;margin:0 0 24px;flex:1}
+.plan-features li{display:flex;align-items:flex-start;gap:10px;margin:8px 0;font-size:.9rem;color:var(--dim)}
+.plan-features li::before{content:"✓";color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
+.plan .btn{width:100%;justify-content:center}
+
+/* ──── Testimonials ──── */
+.testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.testimonial{padding:28px;display:flex;flex-direction:column;gap:14px}
+.testimonial p{margin:0;font-style:italic;color:var(--text);font-size:.95rem;line-height:1.6;
+  flex:1}
+.testimonial .author{display:flex;align-items:center;gap:10px}
+.testimonial .avatar{width:36px;height:36px;border-radius:10px;
+  background:var(--gradient);display:grid;place-items:center;font-weight:700;font-size:.85rem;color:#fff}
+.testimonial .who{color:var(--faint);font-size:.82rem}
+
+/* ──── FAQ ──── */
+.faq-list{max-width:780px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{cursor:pointer;padding:20px 0;font-weight:600;font-size:1rem;
+  display:flex;justify-content:space-between;align-items:center;transition:color .2s}
+.faq-q:hover{color:var(--accent)}
+.faq-q::after{content:"+";color:var(--accent);font-weight:700;font-size:1.3rem;
+  transition:transform .3s;flex-shrink:0;margin-left:16px}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1),padding .3s}
+.faq-item.open .faq-a{max-height:300px;padding:0 0 20px}
+.faq-a p{color:var(--dim);font-size:.92rem;line-height:1.6;margin:0}
+
+/* ──── Footer ──── */
+.footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;
+  color:var(--faint);font-size:.82rem;position:relative;z-index:2}
+.footer a{color:var(--dim)}
+.footer-links{display:flex;gap:20px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+
+/* ──── Scroll Reveal ──── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.35s}
+
+/* ──── Counter animation ──── */
+.counter{font-variant-numeric:tabular-nums}
+
+/* ──── Misc ──── */
+.separator{height:1px;background:var(--border);margin:0 auto;max-width:1200px}
+.gradient-text{background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tag-label{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.4px;
+  text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.mobile-menu-btn{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer;padding:4px}
+@media(max-width:768px){.mobile-menu-btn{display:block}.nav-links{display:none}}
+@media(max-width:768px){.hero h1{font-size:2.2rem}.terminal-body{font-size:.72rem}}
 </style>
 </head>
 <body>
-<nav>
+
+<!-- ──── Animated Background ──── -->
+<div class="bg-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+</div>
+<div class="noise"></div>
+
+<!-- ──── Navigation ──── -->
+<nav id="mainNav">
   <div class="nav-inner">
-    <div class="brand"><img src="logo.png" alt="pumTALK"/><span>pumTALK</span></div>
-    <div class="nav-links">
+    <div class="brand">
+      <img src="https://raw.githubusercontent.com/geekie82/pumtalk/master/frontend/pumtalk.png" alt="pumTALK" onerror="this.style.display='none'"/>
+      <span>pumTALK</span>
+    </div>
+    <div class="nav-links" id="navLinks">
       <a href="#features">Features</a>
+      <a href="#compare">Compare</a>
       <a href="#tools">Tools</a>
-      <a href="#how">How it works</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a href="comments.html">Comments</a>
+      <a href="comments.html">Reviews</a>
     </div>
-    <div class="nav-cta"><a href="#pricing">Get pumTALK</a></div>
+    <div class="nav-cta">
+      <a class="btn btn-primary btn-sm" href="#pricing">Get pumTALK</a>
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+    </div>
   </div>
 </nav>
-<div class="wrap">
-  <div class="hero">
-    <img class="logo" src="https://raw.githubusercontent.com/geekie82/pumtalk/master/frontend/pumtalk.png" alt="pumTALK" onerror="this.style.display='none'"/>
-    <h1>Your AI that never leaves your machine</h1>
-    <p class="tag">pumTALK is a private, fully-local AI companion. Talk to it, clone your own voice, chat with your documents, and control your PC from your phone &mdash; all offline, no cloud, no data leaves home.</p>
-    <p class="subline">Two ways to get started:</p>
-    <p class="subline"><b>Desktop Edition / Self-hosted:</b> Install on your own hardware &middot; full control &middot; bring your own Ollama<br/>
-    <b>Hosted Services:</b> Enterprise-grade voice infrastructure &middot; no GPU required &middot; BYO Ollama</p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="#pricing">Download v1.14.0</a>
-      <a class="btn btn-ghost" href="#features">Explore features</a>
+
+<!-- ──── Hero ──── -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      <span>v1.14.0 &middot; 7-day free trial &middot; No credit card</span>
     </div>
+
+    <h1>Your AI that never<br/>leaves your machine</h1>
+
+    <p class="tagline">pumTALK is a private, voice-first AI companion that runs entirely on your hardware. Talk to it, clone your own voice, chat with documents, and control your PC &mdash; fully offline.</p>
+
+    <p class="subline">Two ways to get started:</p>
+
+    <div class="edition-row">
+      <span class="edition-pill"><b>Desktop Edition</b> &middot; Self-hosted &middot; Full control</span>
+      <span class="edition-pill"><b>Hosted Services</b> &middot; Managed voice &middot; BYO Ollama</span>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary btn-lg" href="#pricing">Start free trial</a>
+      <a class="btn btn-ghost btn-lg" href="#features">Explore features</a>
+    </div>
+
+    <!-- Terminal Demo -->
+    <div class="terminal reveal">
+      <div class="terminal-bar">
+        <div class="terminal-dot r"></div>
+        <div class="terminal-dot y"></div>
+        <div class="terminal-dot g"></div>
+        <span class="terminal-title">pumTALK &mdash; voice assistant</span>
+      </div>
+      <div class="terminal-body">
+        <div class="term-line"><span class="term-user">you:</span> Hey Pum, what's the weather in Bangkok right now?</div>
+        <div class="term-line"><span class="term-dim">[wake word detected &middot; energy VAD &middot; faster-whisper]</span></div>
+        <div class="term-line"><span class="term-ai">pum:</span> Let me check that for you.</div>
+        <div class="term-line"><span class="term-tool">[tool: get_weather &rarr; Bangkok, TH]</span></div>
+        <div class="term-line"><span class="term-ai">pum:</span> It's 31&deg;C and partly cloudy in Bangkok right now. High of 34&deg;C expected today &mdash; no rain in the forecast.</div>
+        <div class="term-line"><span class="term-dim">[TTS: en_GB-alan-medium &middot; 1.2s latency &middot; streaming]</span></div>
+        <div class="term-line"><span class="term-user">you:</span> Nice. Now summarize my latest report and save it as a Word doc.</div>
+        <div class="term-line"><span class="term-tool">[tool: search_notebook &rarr; RAG + citations &middot; 3 sources]</span></div>
+        <div class="term-line"><span class="term-tool">[tool: create_document &rarr; ~/Documents/summary.docx]</span><span class="term-cursor"></span></div>
+      </div>
+    </div>
+
     <div class="badges">
-      <span class="badge"><b>v1.14.0</b></span>
       <span class="badge">100% offline</span>
       <span class="badge">Your data stays yours</span>
       <span class="badge">Windows &middot; Linux &middot; macOS &middot; Docker</span>
-      <span class="badge">7-day free trial</span>
+      <span class="badge">BYO Ollama</span>
     </div>
   </div>
-  <section class="center">
-    <h2>Why pumTALK?</h2>
-    <p class="sub">Most AI assistants send your conversations to a cloud. pumTALK runs entirely on your own hardware &mdash; private, offline-capable, and with zero data-harvesting.</p>
-    <div class="grid3">
-      <div class="benefit"><div class="icon">&#128274;</div><h3>Truly private</h3><p>Everything runs locally. No cloud, no telemetry, no account needed. Your chats, files, and voice stay on your machine.</p></div>
-      <div class="benefit"><div class="icon">&#128172;</div><h3>Speaks in your voice</h3><p>Clone your voice with 6 engines (F5-TTS, XTTS v2, IndexTTS-2, Chatterbox, FishSpeech, CosyVoice) &mdash; your voice print never leaves your machine.</p></div>
-      <div class="benefit"><div class="icon">&#128218;</div><h3>Knows your documents</h3><p>Upload PDFs, Word, Excel, images, notes, and web pages. Ask questions and get answers with citations from your own sources.</p></div>
-      <div class="benefit"><div class="icon">&#128736;</div><h3>Actually does things</h3><p>16 built-in tools + a 41-tool desktop suite: weather (with your real location), stocks, math, web search, document creation, email, and real PC control &mdash; files, apps, clipboard, even the screen.</p></div>
-      <div class="benefit"><div class="icon">&#129504;</div><h3>Remembers &amp; reasons</h3><p>Long-term memory, multi-step sub-agents, and an LLM council that debates complex questions before answering.</p></div>
-      <div class="benefit"><div class="icon">&#128176;</div><h3>No data harvesting</h3><p>Your chats, files, and voice stay on your machine. There is no cloud to mine your data &mdash; it is simply yours.</p></div>
+</section>
+
+<!-- ──── Metrics ──── -->
+<div class="wrap">
+  <div class="metrics reveal">
+    <div class="metric">
+      <div class="num counter" data-target="6">0</div>
+      <div class="label">Voice cloning engines</div>
     </div>
-  </section>
-  <section class="center">
-    <h2>Why pumTALK stands out</h2>
-    <p class="sub">Other local AI tools give you a chat box with a plugin menu. pumTALK is a complete voice-first workbench that actually <i>does</i> things.</p>
-    <div class="grid3">
-      <div class="benefit"><div class="icon">&#127908;</div><h3>6 voice cloning engines</h3><p>F5-TTS, XTTS v2, IndexTTS-2, Chatterbox, FishSpeech, and CosyVoice. Clone your voice in 15 seconds. No other local assistant offers even one.</p></div>
-      <div class="benefit"><div class="icon">&#128736;</div><h3>41-tool desktop suite</h3><p>Files, apps, clipboard, screenshots, OCR, batch rename, compress, Windows services, registry, installed apps. Most competitors have 0-10 tools.</p></div>
-      <div class="benefit"><div class="icon">&#129504;</div><h3>LLM Council</h3><p>Multiple local models debate hard questions before a chairperson synthesizes the answer. No other assistant does this.</p></div>
-      <div class="benefit"><div class="icon">&#128218;</div><h3>Notebook + RAG + citations</h3><p>Upload PDFs, Word, Excel, images, web pages. Get cited answers from your own sources. Competitors offer chat or RAG, not both.</p></div>
-      <div class="benefit"><div class="icon">&#128196;</div><h3>Document powerhouse</h3><p>Create Word, Excel, PowerPoint, and PDF natively. Convert between formats. No other local assistant does this.</p></div>
-      <div class="benefit"><div class="icon">&#128241;</div><h3>Works on any device</h3><p>Phone, tablet, laptop, Chromebook &mdash; if it has a browser, it works. Control your desktop from your couch, the train, or the other side of the world.</p></div>
-      <div class="benefit"><div class="icon">&#128187;</div><h3>Tools run where you need them</h3><p>Desktop tools execute on your machine. Browser tools (clipboard, screenshot, notifications) execute on your phone. Best of both worlds.</p></div>
-      <div class="benefit"><div class="icon">&#128421;</div><h3>Control your desktop from your phone</h3><p>Open apps, manage files, run commands, take screenshots &mdash; all from your mobile browser. The tools execute on your machine, you control them from anywhere.</p></div>
-      <div class="benefit"><div class="icon">&#128274;</div><h3>Truly private</h3><p>Everything runs locally. BYO Ollama. No cloud, no telemetry, no data harvesting. Your conversations stay yours.</p></div>
-      <div class="benefit"><div class="icon">&#9729;</div><h3>Hosted Services option</h3><p>No GPU? No problem. We handle voice infrastructure (STT + TTS) on our servers. You bring your own Ollama. Works on any device.</p></div>
+    <div class="metric">
+      <div class="num counter" data-target="41">0</div>
+      <div class="label">Desktop tools built-in</div>
     </div>
-  </section>
-  <section class="center" id="features">
-    <h2>What makes pumTALK unique</h2>
-    <p class="sub">Most "local AI" tools are chat boxes with a plugin menu. pumTALK is a complete offline workbench &mdash; a voice-first assistant that actually <i>does</i> things.</p>
-    <div class="card" style="text-align:left">
-      <div class="feat"><span class="check">&#10003;</span><div><b>Voice and conversation</b><br/>
-      <span class="why">THE VIBE:</span> Talk to your assistant like a human, not a command line.<br/>
-      <span class="why">THE TECH:</span> Wake-word (works even with a silent mic in push-to-talk), push-to-talk, typing fallback, and true barge-in. Voice cloning on-device in ~15 seconds with 6 engines (F5-TTS, XTTS v2, IndexTTS-2, Chatterbox, FishSpeech, CosyVoice) plus curated hi-fi and character voices.</div></div>
-      <div class="feat"><span class="check">&#10003;</span><div><b>Private, local-first architecture</b><br/>
-      <span class="why">THE VIBE:</span> No surprises, no data mining &mdash; full control of your data and models.<br/>
-      <span class="why">THE TECH:</span> Everything runs locally: chats, files, voice prints, indexes, and license data. Zero data harvesting, and explicit prompts before any risky action.</div></div>
-      <div class="feat"><span class="check">&#10003;</span><div><b>LLM council for hard questions</b><br/>
-      <span class="why">THE VIBE:</span> Better answers through debate, not a single oracle.<br/>
-      <span class="why">THE TECH:</span> Multiple local models deliberate, then a chairperson synthesizes a concise answer &mdash; higher confidence, fewer hallucinations.</div></div>
-      <div class="feat"><span class="check">&#10003;</span><div><b>Notebook and knowledge management</b><br/>
-      <span class="why">THE VIBE:</span> Research that cites its sources and stays organized.<br/>
-      <span class="why">THE TECH:</span> pumbookLM &mdash; a multi-project workspace with cited answers, summaries, audio overviews, and interactive mind maps. Upload PDFs, Word, Excel, images (OCR), web pages, transcripts, and audio; everything is indexed and searchable via RAG.</div></div>
-      <div class="feat"><span class="check">&#10003;</span><div><b>Real desktop control</b><br/>
-      <span class="why">THE VIBE:</span> An assistant that actually does work on your machine, safely.<br/>
-      <span class="why">THE TECH:</span> Native file and app management, clipboard operations, screenshots and OCR, command execution, batch rename, compress/decompress, Windows services/registry/app listing &mdash; with confirmations for risky actions.</div></div>
-      <div class="feat"><span class="check">&#10003;</span><div><b>Productivity suite and document tools</b><br/>
-      <span class="why">THE VIBE:</span> One app, fewer context switches.<br/>
-      <span class="why">THE TECH:</span> Create and convert Word, Excel, PowerPoint, and PDF with OnlyOffice integration. Scanned PDFs auto-detected and OCR'd. Export conversations and projects as Markdown, JSON, or plain text.</div></div>
-      <div class="feat"><span class="check">&#10003;</span><div><b>Vision and multimodal interaction</b><br/>
-      <span class="why">THE VIBE:</span> Ask about what is on your screen or in front of your camera.<br/>
-      <span class="why">THE TECH:</span> Camera and screenshot understanding, OCR, and the ability to answer visual questions alongside text and voice.</div></div>
-      <div class="feat"><span class="check">&#10003;</span><div><b>Observability and reliability</b><br/>
-      <span class="why">THE VIBE:</span> Know what is happening under the hood when things go sideways.<br/>
-      <span class="why">THE TECH:</span> Structured JSON logs with correlation IDs, audio health checks with live waveform, device picker, and diagnostics.</div></div>
-      <div class="feat"><span class="check">&#10003;</span><div><b>License system</b><br/>
-      <span class="why">THE VIBE:</span> Try before you buy, no credit card required.<br/>
-      <span class="why">THE TECH:</span> 7-day free trial with all features, 3-day grace period, then feature degradation. Ed25519-signed activation keys. Vendor tool for key issuance. License admin portal for management.</div></div>
-      <div class="feat"><span class="check">&#10003;</span><div><b>Instant, streaming responses</b><br/>
-      <span class="why">THE VIBE:</span> Conversations feel alive when replies start immediately.<br/>
-      <span class="why">THE TECH:</span> Energy VAD plus a streaming pipeline so responses begin before the model finishes thinking &mdash; less waiting, more flow.</div></div>
+    <div class="metric">
+      <div class="num">0%</div>
+      <div class="label">Data leaves your machine</div>
     </div>
-  </section>
-  <section class="center" id="tools">
-    <h2>Built-in tools</h2>
-    <p class="sub">The assistant calls these automatically &mdash; you can also just ask.</p>
-    <div class="tools">
-      <div class="tool-card"><h4>Knowledge &amp; research</h4>
-        <ul><li><b>search_web</b> &mdash; web search (SearXNG / DuckDuckGo)</li><li><b>ddg_answer</b> &mdash; instant answers</li><li><b>fetch_url</b> &mdash; read &amp; summarise pages</li><li><b>youtube_transcript</b> &mdash; video summaries</li><li><b>arxiv_search</b> &mdash; research papers</li><li><b>query_wikidata</b> &mdash; factual lookups</li></ul>
+    <div class="metric">
+      <div class="num counter" data-target="7">0</div>
+      <div class="label">Day free trial</div>
+    </div>
+  </div>
+</div>
+
+<div class="separator"></div>
+
+<!-- ──── Why pumTALK ──── -->
+<section class="section-center" id="features">
+  <div class="wrap">
+    <div class="tag-label reveal">Why pumTALK</div>
+    <h2 class="reveal">Your private AI.<br/>Your rules. Your data.</h2>
+    <p class="sub reveal">Most AI assistants send your conversations to a cloud. pumTALK runs entirely on your own hardware &mdash; private, offline-capable, and with zero data-harvesting.</p>
+
+    <div class="bento bento-2x2" style="margin-top:20px">
+      <div class="glass bento-card span-2 accent-glow reveal">
+        <div class="icon">&#127908;</div>
+        <div class="card-title">6 voice cloning engines</div>
+        <div class="card-desc">F5-TTS, XTTS v2, IndexTTS-2, Chatterbox, FishSpeech, CosyVoice. Clone your voice in 15 seconds from a recording or uploaded file. No other local assistant offers even one.</div>
       </div>
-      <div class="tool-card"><h4>Weather, time &amp; math</h4>
-        <ul><li><b>get_weather</b> / forecast / extended forecast</li><li><b>get_location</b></li><li><b>get_current_time</b></li><li><b>calculator</b> &mdash; safe math</li></ul>
+      <div class="glass bento-card tall accent-glow-v reveal reveal-delay-1">
+        <div class="icon">&#128736;</div>
+        <div class="card-title">41-tool desktop suite</div>
+        <div class="card-desc">Files, apps, clipboard, screenshots, OCR, batch rename, compress, Windows services, registry, installed apps. Most competitors have 0&ndash;10 tools.</div>
       </div>
-      <div class="tool-card"><h4>Stocks &amp; finance</h4>
-        <ul><li><b>get_stock</b> &mdash; quick prices</li><li><b>analyze_stock</b> &mdash; RSI, MACD, SMA trends, volatility, recent news</li></ul>
+      <div class="glass bento-card reveal reveal-delay-2">
+        <div class="icon">&#129504;</div>
+        <div class="card-title">LLM Council</div>
+        <div class="card-desc">Multiple local models debate complex questions. A chairperson synthesizes the answer. No other assistant does this.</div>
       </div>
-      <div class="tool-card"><h4>Documents &amp; email</h4>
-        <ul><li><b>create_document</b> &mdash; DOCX/PPTX/XLSX/PDF</li><li><b>convert_document</b> &mdash; format conversion (OnlyOffice)</li><li><b>send_email</b> &mdash; SMTP (optional)</li></ul>
+      <div class="glass bento-card accent-glow reveal reveal-delay-3">
+        <div class="icon">&#128218;</div>
+        <div class="card-title">Notebook + RAG + citations</div>
+        <div class="card-desc">Upload PDFs, Word, Excel, images, web pages. Get cited answers from your own sources. Competitors offer chat or RAG, not both.</div>
       </div>
-      <div class="tool-card"><h4>Memory</h4>
-        <ul><li><b>add_memory</b> / recall / update / delete &mdash; long-term facts</li></ul>
+      <div class="glass bento-card reveal reveal-delay-1">
+        <div class="icon">&#128196;</div>
+        <div class="card-title">Document powerhouse</div>
+        <div class="card-desc">Create Word, Excel, PowerPoint, and PDF natively. Convert between formats. No other local assistant does this.</div>
       </div>
-      <div class="tool-card"><h4>Desktop &amp; PC control</h4>
-        <ul><li><b>run_command</b> &middot; open/close apps &middot; open URL</li><li><b>list/list_dir/file_info/disk_usage</b></li><li><b>view &middot; read &middot; str_replace &middot; write &middot; append</b></li><li><b>create_folder &middot; copy &middot; move &middot; delete</b></li><li><b>compress &middot; decompress &middot; batch_rename</b></li><li><b>find/delete_duplicates</b></li><li><b>screenshot &middot; read_screen (OCR)</b></li><li><b>type_text &middot; click &middot; press_key</b></li><li><b>clipboard &middot; system_info &middot; system_uptime &middot; volume &middot; brightness</b></li><li><b>Windows-only:</b> list_installed_apps &middot; windows_service &middot; read_registry</li></ul>
+      <div class="glass bento-card span-2 accent-glow-v reveal reveal-delay-2">
+        <div class="icon">&#128241;</div>
+        <div class="card-title">Control your desktop from your phone</div>
+        <div class="card-desc">Phone, tablet, laptop, Chromebook &mdash; if it has a browser, it works. Open apps, manage files, run commands, take screenshots &mdash; all from your mobile browser. Desktop tools run on your machine, browser tools on your phone.</div>
+      </div>
+      <div class="glass bento-card accent-glow reveal reveal-delay-3">
+        <div class="icon">&#128274;</div>
+        <div class="card-title">Truly private</div>
+        <div class="card-desc">No cloud, no telemetry, no account needed. Your chats, files, and voice stay on your machine.</div>
+      </div>
+      <div class="glass bento-card reveal reveal-delay-4">
+        <div class="icon">&#9729;</div>
+        <div class="card-title">Hosted Services option</div>
+        <div class="card-desc">No GPU? No problem. We handle voice infrastructure. You bring your own Ollama. Works on any device.</div>
       </div>
     </div>
-    <div class="notice">Risky desktop actions (deleting files, running commands, controlling the screen) always require your explicit approval first.</div>
-  </section>
-  <section class="center">
-    <h2>Out-of-the-box tool advantage</h2>
-    <p class="sub">With many local AI tools, actions are an afterthought. With pumTALK, it is native.</p>
-    <div class="grid3">
-      <div class="benefit"><div class="icon">&#9881;</div><h3>Native system tools</h3><p><code>run_command</code>, opening &amp; closing apps, and Office document generation are built-in APIs &mdash; no permissions to configure, no plugins to maintain.</p></div>
-      <div class="benefit"><div class="icon">&#128196;</div><h3>Office docs, no extra installs</h3><p>Create DOCX, XLSX, PPTX, and PDF out of the box. Optional OnlyOffice integration for PDF creation and format conversion.</p></div>
-      <div class="benefit"><div class="icon">&#128421;</div><h3>Desktop-first</h3><p>pumTALK treats your desktop as its primary workspace right after installation &mdash; files, apps, clipboard, and screen, ready to go.</p></div>
+  </div>
+</section>
+
+<div class="separator"></div>
+
+<!-- ──── Detailed Features ──── -->
+<section>
+  <div class="wrap-narrow">
+    <div class="tag-label center reveal" style="text-align:center;display:block">Deep features</div>
+    <h2 class="reveal" style="text-align:center">What makes pumTALK unique</h2>
+    <p class="sub reveal" style="text-align:center">Most "local AI" tools are chat boxes with a plugin menu. pumTALK is a complete offline workbench &mdash; a voice-first assistant that actually <em>does</em> things.</p>
+
+    <div class="glass reveal" style="padding:28px 32px">
+      <div class="feat-list">
+        <div class="feat-item">
+          <div class="feat-check">&#10003;</div>
+          <div class="feat-content">
+            <b>Voice and conversation</b>
+            <div class="feat-vibe">THE VIBE</div>
+            Talk to your assistant like a human, not a command line.
+            <div class="feat-tech">Wake-word (works even with a silent mic in push-to-talk), push-to-talk, typing fallback, and true barge-in. 6 cloning engines + curated hi-fi and character voices.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-check">&#10003;</div>
+          <div class="feat-content">
+            <b>Private, local-first architecture</b>
+            <div class="feat-vibe">THE VIBE</div>
+            No surprises, no data mining &mdash; full control of your data and models.
+            <div class="feat-tech">Everything runs locally: chats, files, voice prints, indexes, and license data. Zero data harvesting, explicit prompts before risky actions.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-check">&#10003;</div>
+          <div class="feat-content">
+            <b>LLM council for hard questions</b>
+            <div class="feat-vibe">THE VIBE</div>
+            Better answers through debate, not a single oracle.
+            <div class="feat-tech">Multiple local models deliberate, then a chairperson synthesizes a concise answer &mdash; higher confidence, fewer hallucinations.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-check">&#10003;</div>
+          <div class="feat-content">
+            <b>Notebook and knowledge management</b>
+            <div class="feat-vibe">THE VIBE</div>
+            Research that cites its sources and stays organized.
+            <div class="feat-tech">Multi-project workspace with cited answers, summaries, audio overviews, and interactive mind maps. Upload PDFs, Word, Excel, images (OCR), web pages, transcripts, and audio; everything indexed via RAG.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-check">&#10003;</div>
+          <div class="feat-content">
+            <b>Real desktop control</b>
+            <div class="feat-vibe">THE VIBE</div>
+            An assistant that actually does work on your machine, safely.
+            <div class="feat-tech">Native file and app management, clipboard, screenshots, OCR, command execution, batch rename, compress/decompress, Windows services/registry/app listing &mdash; with confirmations for risky actions.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-check">&#10003;</div>
+          <div class="feat-content">
+            <b>Productivity suite and document tools</b>
+            <div class="feat-vibe">THE VIBE</div>
+            One app, fewer context switches.
+            <div class="feat-tech">Create and convert Word, Excel, PowerPoint, and PDF with OnlyOffice integration. Scanned PDFs auto-detected and OCR'd. Export as Markdown, JSON, or plain text.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-check">&#10003;</div>
+          <div class="feat-content">
+            <b>Vision and multimodal interaction</b>
+            <div class="feat-vibe">THE VIBE</div>
+            Ask about what's on your screen or in front of your camera.
+            <div class="feat-tech">Camera and screenshot understanding, OCR, visual question answering alongside text and voice.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-check">&#10003;</div>
+          <div class="feat-content">
+            <b>Instant, streaming responses</b>
+            <div class="feat-vibe">THE VIBE</div>
+            Conversations feel alive when replies start immediately.
+            <div class="feat-tech">Energy VAD plus a streaming pipeline so responses begin before the model finishes thinking &mdash; less waiting, more flow.</div>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
-  <section class="center" id="how">
-    <h2>How it works</h2>
-    <p class="sub">You talk (or type) &rarr; it transcribes &rarr; thinks &rarr; replies out loud &mdash; using tools, your documents, memory, or the PC along the way.</p>
-    <h3>The voice pipeline</h3>
-    <div class="mermaid">
-flowchart LR
-    A[You speak] --> B[Microphone / browser capture]
-    B --> C[Energy VAD]
-    C --> D[STT: faster-whisper]
-    D --> E[LLM: Ollama / LM Studio]
-    E --> F[TTS: Piper / cloned voice]
-    F --> G[Speaker / browser]
-    E --> H[Chat bubble]
+  </div>
+</section>
+
+<div class="separator"></div>
+
+<!-- ──── Voice Pipeline ──── -->
+<section class="section-center">
+  <div class="wrap">
+    <div class="tag-label reveal">How it works</div>
+    <h2 class="reveal">Voice pipeline, not just chat</h2>
+    <p class="sub reveal">You talk (or type) &rarr; it transcribes &rarr; thinks &rarr; replies out loud &mdash; using tools, documents, memory, or your PC along the way.</p>
+
+    <div class="pipeline reveal">
+      <div class="pipe-node">&#127908; You speak</div>
+      <span class="pipe-arrow">&rarr;</span>
+      <div class="pipe-node">Energy VAD</div>
+      <span class="pipe-arrow">&rarr;</span>
+      <div class="pipe-node">faster-whisper</div>
+      <span class="pipe-arrow">&rarr;</span>
+      <div class="pipe-node">Ollama / LM Studio</div>
+      <span class="pipe-arrow">&rarr;</span>
+      <div class="pipe-node">Piper / F5-TTS</div>
+      <span class="pipe-arrow">&rarr;</span>
+      <div class="pipe-node">&#128266; Speaker</div>
     </div>
-    <h3>System architecture</h3>
-    <div class="mermaid">
-flowchart TB
-    UI[Web / Desktop UI] --> APP[pumTALK core agent]
-    MIC[Browser / server mic] --> STT[faster-whisper]
-    STT --> LLM[Ollama / LM Studio]
-    LLM --> TTS[Piper / F5-TTS / XTTS]
-    LLM --> UI
-    APP --> NB[Notebook / RAG + citations]
-    APP --> KB[Knowledge Base]
-    APP --> TOOLS[Tools]
-    APP --> MEM[Memory]
-    APP --> SUB[Sub-agents]
-    APP --> COUNCIL[LLM Council]
-    APP --> DESK[Desktop control]
-    TOOLS --> LLM
+
+    <div class="bento bento-2x2" style="margin-top:30px">
+      <div class="glass bento-card accent-glow reveal">
+        <div class="icon">&#9889;</div>
+        <div class="card-title">Energy VAD</div>
+        <div class="card-desc">Recognizes the instant you start and stop talking &mdash; never waits on long pauses or processes silence.</div>
+      </div>
+      <div class="glass bento-card accent-glow-v reveal reveal-delay-1">
+        <div class="icon">&#128266;</div>
+        <div class="card-title">Streaming audio</div>
+        <div class="card-desc">Tokens stream straight from the LLM into voice generators as they're produced &mdash; speech starts before the reply is done.</div>
+      </div>
+      <div class="glass bento-card span-2 reveal reveal-delay-2">
+        <div class="icon">&#128172;</div>
+        <div class="card-title">True barge-in</div>
+        <div class="card-desc">The capture loop runs in parallel with generation, so it listens while it speaks and you can interrupt instantly. Say "Hey Pum" to wake the assistant even with the mic off.</div>
+      </div>
     </div>
-  </section>
-  <section class="center">
-    <h2>Why pumTALK feels so fast</h2>
-    <p class="sub">Most local AI setups have a big delay. pumTALK bypasses that bottleneck with three native optimizations.</p>
-    <div class="grid3">
-      <div class="benefit"><div class="icon">&#9889;</div><h3>Energy VAD</h3><p>Voice Activity Detection recognizes the instant you start and stop talking &mdash; it never waits on long pauses or processes silence.</p></div>
-      <div class="benefit"><div class="icon">&#128266;</div><h3>Streaming audio pipeline</h3><p>Tokens stream straight from the LLM into lightweight voice generators as they are produced &mdash; speech starts before the whole reply is done.</p></div>
-      <div class="benefit"><div class="icon">&#128172;</div><h3>Barge-in</h3><p>The capture loop runs in parallel with generation, so it listens while it speaks and you can interrupt instantly.</p></div>
+  </div>
+</section>
+
+<div class="separator"></div>
+
+<!-- ──── Comparison ──── -->
+<section class="section-center" id="compare">
+  <div class="wrap">
+    <div class="tag-label reveal">Head to head</div>
+    <h2 class="reveal">How pumTALK stacks up</h2>
+    <p class="sub reveal">Most "local AI" tools are chat boxes with a plugin menu. pumTALK is a complete voice-first workbench.</p>
+
+    <div class="table-wrap reveal">
+      <table class="comparison">
+        <thead>
+          <tr class="highlight">
+            <th>Feature</th>
+            <th class="highlight">pumTALK</th>
+            <th>Generic local AI</th>
+            <th>Cloud AI assistants</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Voice cloning engines</td><td class="yes highlight">6 engines</td><td class="no">0</td><td class="partial">1&ndash;3 (cloud only)</td></tr>
+          <tr><td>Desktop control tools</td><td class="yes highlight">41 tools</td><td class="partial">0&ndash;10</td><td class="no">0</td></tr>
+          <tr><td>Notebook + RAG</td><td class="yes highlight">Yes + citations</td><td class="partial">Basic RAG</td><td class="yes">Yes (cloud)</td></tr>
+          <tr><td>Document creation</td><td class="yes highlight">DOCX/XLSX/PPTX/PDF</td><td class="no">No</td><td class="partial">Limited</td></tr>
+          <tr><td>LLM Council</td><td class="yes highlight">Yes</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><td>Runs offline</td><td class="yes highlight">100%</td><td class="yes">Yes</td><td class="no">No</td></tr>
+          <tr><td>Data stays on your machine</td><td class="yes highlight">Always</td><td class="yes">Yes</td><td class="no">No</td></tr>
+          <tr><td>Mobile / browser access</td><td class="yes highlight">Any device</td><td class="partial">Some</td><td class="yes">Yes</td></tr>
+          <tr><td>Wake word + barge-in</td><td class="yes highlight">Yes</td><td class="no">No</td><td class="partial">Some</td></tr>
+          <tr><td>BYO Ollama / LM Studio</td><td class="yes highlight">Yes</td><td class="yes">Yes</td><td class="no">No</td></tr>
+          <tr><td>Free trial</td><td class="yes highlight">7 days, no card</td><td class="partial">Varies</td><td class="partial">Varies</td></tr>
+          <tr><td>Sub-agent delegation</td><td class="yes highlight">Yes</td><td class="no">No</td><td class="partial">Some</td></tr>
+        </tbody>
+      </table>
     </div>
-  </section>
-  <section class="center" id="pricing">
-    <h2>Get pumTALK</h2>
-    <p class="sub">Start with a 7-day free trial. All features enabled, no credit card required. After the trial, choose a plan that works for you.</p>
-    <div class="pricing">
-      <div class="plan">
-        <span class="tba">7-DAY FREE TRIAL</span>
-        <div class="pname">Desktop Edition / Self-hosted</div>
-        <p class="ppd">Install on your own hardware &middot; full control &middot; runs offline</p>
-        <h3 style="margin:14px 0 4px;font-size:.9rem">What you get</h3>
-        <ul><li>Full pumTALK on your machine</li><li>16 built-in tools + 41-tool desktop suite</li><li>6 voice cloning engines</li><li>Notebook with RAG &amp; citations</li><li>Desktop control</li><li>Document creation &amp; conversion</li><li>LLM Council &amp; sub-agents</li><li>BYO Ollama / LM Studio / OpenAI</li></ul>
-        <h3 style="margin:14px 0 4px;font-size:.9rem">Plans</h3>
-        <ul><li><b>Personal</b> &mdash; 1 user, 2 machines</li><li><b>Commercial</b> &mdash; 5+ users, business use</li><li><b>Enterprise</b> &mdash; 20+ users, custom terms</li></ul>
-        <p class="ppd" style="font-size:.85rem">Licenses available monthly, quarterly, annually</p>
+  </div>
+</section>
+
+<div class="separator"></div>
+
+<!-- ──── Tools ──── -->
+<section class="section-center" id="tools">
+  <div class="wrap">
+    <div class="tag-label reveal">Built-in tools</div>
+    <h2 class="reveal">41 tools, zero setup</h2>
+    <p class="sub reveal">The assistant calls these automatically &mdash; you can also just ask.</p>
+
+    <div class="tools-grid reveal">
+      <div class="glass tool-card">
+        <h4>Knowledge &amp; research</h4>
+        <ul>
+          <li><b>search_web</b> &mdash; web search (SearXNG / DuckDuckGo)</li>
+          <li><b>ddg_answer</b> &mdash; instant answers</li>
+          <li><b>fetch_url</b> &mdash; read &amp; summarise pages</li>
+          <li><b>youtube_transcript</b> &mdash; video summaries</li>
+          <li><b>arxiv_search</b> &mdash; research papers</li>
+          <li><b>query_wikidata</b> &mdash; factual lookups</li>
+        </ul>
+      </div>
+      <div class="glass tool-card">
+        <h4>Weather, time &amp; math</h4>
+        <ul>
+          <li><b>get_weather</b> / forecast / extended forecast</li>
+          <li><b>get_location</b> &mdash; browser geolocation</li>
+          <li><b>get_current_time</b> &mdash; timezone-aware</li>
+          <li><b>calculator</b> &mdash; safe math</li>
+        </ul>
+      </div>
+      <div class="glass tool-card">
+        <h4>Stocks &amp; finance</h4>
+        <ul>
+          <li><b>get_stock</b> &mdash; quick prices</li>
+          <li><b>analyze_stock</b> &mdash; RSI, MACD, SMA, volatility, news</li>
+        </ul>
+      </div>
+      <div class="glass tool-card">
+        <h4>Documents &amp; email</h4>
+        <ul>
+          <li><b>create_document</b> &mdash; DOCX / PPTX / XLSX / PDF</li>
+          <li><b>convert_document</b> &mdash; format conversion</li>
+          <li><b>send_email</b> &mdash; SMTP (optional)</li>
+        </ul>
+      </div>
+      <div class="glass tool-card">
+        <h4>Memory</h4>
+        <ul>
+          <li><b>add_memory</b> / recall / update / delete</li>
+          <li>Long-term facts, preferences, and context</li>
+        </ul>
+      </div>
+      <div class="glass tool-card" style="grid-column:span 2">
+        <h4>Desktop &amp; PC control (41 tools)</h4>
+        <ul style="columns:2;column-gap:20px">
+          <li><b>run_command</b> &middot; open/close apps &middot; open URL</li>
+          <li><b>list</b> / list_dir / file_info / disk_usage</li>
+          <li><b>view</b> &middot; read &middot; str_replace &middot; write &middot; append</li>
+          <li><b>create_folder</b> &middot; copy &middot; move &middot; delete</li>
+          <li><b>compress</b> &middot; decompress &middot; batch_rename</li>
+          <li><b>find_duplicates</b> / delete_duplicates</li>
+          <li><b>screenshot</b> &middot; read_screen (OCR)</li>
+          <li><b>type_text</b> &middot; click &middot; press_key</li>
+          <li><b>clipboard</b> &middot; system_info &middot; system_uptime</li>
+          <li><b>volume</b> &middot; brightness</li>
+          <li><b>Windows:</b> list_installed_apps &middot; windows_service &middot; read_registry</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="glass reveal" style="margin-top:20px;padding:16px 20px;display:flex;align-items:center;gap:12px;font-size:.88rem;color:var(--dim)">
+      <span style="color:var(--amber);font-size:1.2rem">&#9888;</span>
+      Risky desktop actions (deleting files, running commands, controlling the screen) always require your explicit approval first.
+    </div>
+  </div>
+</section>
+
+<div class="separator"></div>
+
+<!-- ──── Pricing ──── -->
+<section class="section-center" id="pricing">
+  <div class="wrap">
+    <div class="tag-label reveal">Pricing</div>
+    <h2 class="reveal">Get pumTALK</h2>
+    <p class="sub reveal">Start with a 7-day free trial. All features enabled, no credit card required. After the trial, choose a plan that works for you.</p>
+
+    <div class="pricing-toggle reveal">
+      <div class="toggle-group">
+        <button class="toggle-btn active" data-period="monthly">Monthly</button>
+        <button class="toggle-btn" data-period="yearly">Yearly <span style="color:var(--green);font-size:.75rem;font-weight:700;margin-left:4px">Save 25%</span></button>
+      </div>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Desktop Edition -->
+      <div class="glass plan reveal">
+        <span class="plan-trial">7-DAY FREE TRIAL</span>
+        <div class="plan-name">Desktop Edition / Self-hosted</div>
+        <div class="plan-price" id="desktop-price">Custom</div>
+        <div class="plan-period">Install on your own hardware &middot; full control</div>
+        <p class="plan-desc">Run everything locally. Bring your own Ollama. Your data never leaves your machine.</p>
+        <ul class="plan-features">
+          <li>Full pumTALK on your machine</li>
+          <li>16 built-in tools + 41-tool desktop suite</li>
+          <li>6 voice cloning engines</li>
+          <li>Notebook with RAG &amp; citations</li>
+          <li>Desktop control</li>
+          <li>Document creation &amp; conversion</li>
+          <li>LLM Council &amp; sub-agents</li>
+          <li>BYO Ollama / LM Studio / OpenAI</li>
+        </ul>
+        <ul class="plan-features" style="margin-bottom:24px;padding-top:16px;border-top:1px solid var(--border)">
+          <li><b>Personal</b> &mdash; 1 user, 2 machines</li>
+          <li><b>Commercial</b> &mdash; 5+ users, business use</li>
+          <li><b>Enterprise</b> &mdash; 20+ users, custom terms</li>
+        </ul>
         <a class="btn btn-ghost" href="mailto:simon@pummail.com">Get a license key</a>
       </div>
-      <div class="plan popular">
-        <span class="tag-popular">RECOMMENDED</span>
-        <div class="pname">Hosted Services</div>
-        <p class="ppd">Enterprise-grade voice infrastructure &middot; no GPU required</p>
-        <h3 style="margin:14px 0 4px;font-size:.9rem">What you get</h3>
-        <ul><li><b>No GPU needed</b> &mdash; voice runs on our hardware, you use any device</li><li><b>Real-time voice</b> &mdash; STT + TTS with sub-second latency</li><li><b>6 voice cloning engines</b> &mdash; F5-TTS, XTTS v2, IndexTTS-2, Chatterbox, FishSpeech, CosyVoice</li><li><b>Wake word &amp; barge-in</b> &mdash; interrupt mid-reply, natural conversation</li><li><b>Your own subdomain</b> &mdash; <code>you.pumtalk.com</code></li><li><b>BYO Ollama</b> &mdash; connect your own LLM, full privacy</li><li><b>Works everywhere</b> &mdash; phone, tablet, laptop, Chromebook, any browser</li><li><b>No setup</b> &mdash; sign up and start talking in minutes</li></ul>
-        <h3 style="margin:14px 0 4px;font-size:.9rem">Plans</h3>
-        <ul><li><b>Personal</b> &mdash; 1 user</li><li><b>Commercial</b> &mdash; 5+ users</li><li><b>Enterprise</b> &mdash; 20+ users, custom</li></ul>
-        <p class="ppd" style="font-size:.85rem">Monthly, quarterly, annual subscriptions</p>
+
+      <!-- Hosted Services -->
+      <div class="glass plan recommended reveal reveal-delay-1">
+        <span class="plan-badge">RECOMMENDED</span>
+        <div class="plan-name">Hosted Services</div>
+        <div class="plan-price" id="hosted-price">Custom</div>
+        <div class="plan-period">Enterprise-grade voice &middot; no GPU required</div>
+        <p class="plan-desc">We handle voice infrastructure (STT + TTS) on our servers. You bring your own Ollama for the LLM.</p>
+        <ul class="plan-features">
+          <li><b>No GPU needed</b> &mdash; voice runs on our hardware</li>
+          <li><b>Real-time voice</b> &mdash; STT + TTS, sub-second latency</li>
+          <li><b>6 voice cloning engines</b> &mdash; all included</li>
+          <li><b>Wake word &amp; barge-in</b> &mdash; natural conversation</li>
+          <li><b>Your own subdomain</b> &mdash; <code>you.pumtalk.com</code></li>
+          <li><b>BYO Ollama</b> &mdash; connect your own LLM</li>
+          <li><b>Works everywhere</b> &mdash; phone, tablet, laptop, any browser</li>
+          <li><b>No setup</b> &mdash; sign up and start talking in minutes</li>
+        </ul>
+        <ul class="plan-features" style="margin-bottom:24px;padding-top:16px;border-top:1px solid var(--border)">
+          <li><b>Personal</b> &mdash; 1 user</li>
+          <li><b>Commercial</b> &mdash; 5+ users</li>
+          <li><b>Enterprise</b> &mdash; 20+ users, custom</li>
+        </ul>
         <a class="btn btn-primary" href="mailto:simon@pummail.com">Get started</a>
       </div>
     </div>
-    <div class="notice" style="margin-top:20px"><b>Important:</b> pumTALK does <b>not</b> host Ollama, LLMs, or OpenAI APIs. You bring your own (BYO) &mdash; we provide the voice infrastructure (STT + TTS) on SaaS, or the full software on self-hosted. Your conversations stay private.</div>
-    <p class="sub" style="margin-top:16px;font-size:.9rem">After trial expiry: 3-day grace period, then Voice, Notebook &amp; Tools are disabled. Basic chat always works. <a href="mailto:simon@pummail.com">Contact us</a> for pricing details.</p>
-  </section>
-  <section class="center">
-    <h2>Loved by early users</h2>
-    <div class="quotes">
-      <div class="quote"><p>"It finally feels like an assistant that lives on my computer, not in someone's cloud. The voice cloning is genuinely surprising."</p><div class="who">&mdash; Private beta user</div></div>
-      <div class="quote"><p>"I asked it to summarise my own PDFs with citations, then make a Word report, then send it by email. It just did it."</p><div class="who">&mdash; Early adopter</div></div>
-      <div class="quote"><p>"Works offline, keeps my data private, and just feels like a personal AI should. This is the way."</p><div class="who">&mdash; Reviewer</div></div>
+
+    <div class="glass reveal" style="margin-top:24px;padding:18px 22px;display:flex;align-items:flex-start;gap:12px;font-size:.88rem;color:var(--dim);line-height:1.6">
+      <span style="color:var(--accent);font-size:1.1rem;flex-shrink:0;margin-top:2px">&#9432;</span>
+      <div><b style="color:var(--text)">Important:</b> pumTALK does <b>not</b> host Ollama, LLMs, or OpenAI APIs. You bring your own (BYO) &mdash; we provide the voice infrastructure (STT + TTS) on SaaS, or the full software on self-hosted. Your conversations stay private.</div>
     </div>
-    <p class="sub" style="margin-top:22px"><a href="comments.html">See more reviews &amp; leave your own &rarr;</a></p>
-  </section>
-  <section class="center" id="faq">
-    <h2>FAQ</h2>
-    <div style="text-align:left;max-width:760px;margin:0 auto">
-      <details open><summary>Does it need the internet?</summary><p>No. The model, speech, and everything else run locally on your machine. You only need internet if you use optional tools like web search, weather, or stock prices.</p></details>
-      <details><summary>Is my data private?</summary><p>Yes. Chats, files, memories, and your cloned voice stay on your own disk. Nothing is sent to a pumTALK cloud (there is none). If you configure a cloud LLM provider (OpenAI, Anthropic), messages are sent to that provider for inference only.</p></details>
-      <details><summary>What hardware do I need?</summary><p>An 8GB+ machine is fine for text. For the best voice experience, an NVIDIA GPU (12GB+) is recommended for faster speech and cloning.</p></details>
-      <details><summary>Which AI model does it use?</summary><p>It works with Ollama or LM Studio, so you can use any local model you like and swap models freely. Cloud providers (OpenAI, Anthropic) are also supported.</p></details>
-      <details><summary>Can it really control my PC?</summary><p>Yes &mdash; files, apps, windows, clipboard, screenshots, OCR, volume/brightness, and more. It runs freely with natural confirmations, but security-critical changes (editing sshd_config, enabling root login, sudoers) ask for your approval first. Desktop control is opt-in.</p></details>
-      <details><summary>How does it know my location for weather?</summary><p>On first load pumTALK asks for your browser's geolocation (a normal "allow location" prompt) and uses your real location for weather and forecasts. The desktop app can share the PC's location too.</p></details>
-      <details><summary>Does the wake word work with a silent mic?</summary><p>Yes. With Wake word enabled, say "Hey Pum" to wake pumTALK even in push-to-talk mode with the mic off.</p></details>
-      <details><summary>How does the license work?</summary><p>You get a 7-day free trial with all features. After the trial, a 3-day grace period follows. Then Voice, Notebook, and Tools are disabled. Basic chat always works. Enter a license key in Settings to restore full features.</p></details>
-      <details><summary>What voice cloning engines are supported?</summary><p>Six engines: F5-TTS (best quality), XTTS v2 (fastest), IndexTTS-2, Chatterbox, FishSpeech, and CosyVoice. Clone in ~15 seconds from a recording or uploaded file.</p></details>
-      <details><summary>Can I use it on a server?</summary><p>Yes. pumTALK runs as a systemd service on Linux. Bind to 0.0.0.0 for LAN access with authentication. Docker images are also available.</p></details>
-      <details><summary>What is BYO (Bring Your Own)?</summary><p>pumTALK does <b>not</b> host Ollama, LLMs, or OpenAI APIs. You bring your own &mdash; connect your local Ollama, LM Studio, or any OpenAI-compatible API. On SaaS, we handle voice (STT + TTS); on self-hosted, you run everything.</p></details>
-      <details><summary>What is the difference between Hosted Services and Desktop Edition?</summary><p><b>Desktop Edition / Self-hosted:</b> Install pumTALK on your own hardware, run everything locally. <b>Hosted Services:</b> We host the voice infrastructure (STT + TTS) on our servers; you connect your own Ollama for the LLM. Both options give you the full pumTALK experience.</p></details>
-    </div>
-  </section>
-  <section class="center">
-    <h2>Own your AI. Keep your data.</h2>
-    <p class="sub">Start with a 7-day free trial. Two ways to get started: self-hosted (full control) or SaaS (managed voice, you bring Ollama). Your data never leaves your machine.</p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="https://github.com/geekie82/pumtalk/releases">Download v1.14.0</a>
-      <a class="btn btn-ghost" href="mailto:simon@pummail.com">Get in touch</a>
-    </div>
-  </section>
-  <div class="footer">
-    pumTALK &middot; Proprietary software. All rights reserved.<br/>
-    Contact: <a href="mailto:simon@pummail.com">simon@pummail.com</a> &middot; <a href="https://github.com/geekie82/pumtalk">GitHub</a>
+
+    <p class="reveal" style="text-align:center;color:var(--faint);font-size:.88rem;margin-top:16px">After trial: 3-day grace period, then Voice, Notebook &amp; Tools are disabled. Basic chat always works. <a href="mailto:simon@pummail.com">Contact us</a> for pricing details.</p>
   </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({startOnLoad:true,theme:"dark"});</script>
+</section>
+
+<div class="separator"></div>
+
+<!-- ──── Testimonials ──── -->
+<section class="section-center">
+  <div class="wrap">
+    <div class="tag-label reveal">Social proof</div>
+    <h2 class="reveal">Loved by early users</h2>
+
+    <div class="testimonials">
+      <div class="glass testimonial reveal">
+        <p>"It finally feels like an assistant that lives on my computer, not in someone's cloud. The voice cloning is genuinely surprising."</p>
+        <div class="author">
+          <div class="avatar">A</div>
+          <span class="who">Private beta user</span>
+        </div>
+      </div>
+      <div class="glass testimonial reveal reveal-delay-1">
+        <p>"I asked it to summarise my own PDFs with citations, then make a Word report, then send it by email. It just did it."</p>
+        <div class="author">
+          <div class="avatar">B</div>
+          <span class="who">Early adopter</span>
+        </div>
+      </div>
+      <div class="glass testimonial reveal reveal-delay-2">
+        <p>"Works offline, keeps my data private, and just feels like a personal AI should. This is the way."</p>
+        <div class="author">
+          <div class="avatar">C</div>
+          <span class="who">Reviewer</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="reveal" style="margin-top:24px"><a href="comments.html" style="color:var(--dim);font-size:.9rem">See more reviews &amp; leave your own &rarr;</a></p>
+  </div>
+</section>
+
+<div class="separator"></div>
+
+<!-- ──── FAQ ──── -->
+<section class="section-center" id="faq">
+  <div class="wrap">
+    <div class="tag-label reveal">FAQ</div>
+    <h2 class="reveal">Frequently asked questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item open reveal">
+        <div class="faq-q">Does it need the internet?</div>
+        <div class="faq-a"><p>No. The model, speech, and everything else run locally on your machine. You only need internet if you use optional tools like web search, weather, or stock prices.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Is my data private?</div>
+        <div class="faq-a"><p>Yes. Chats, files, memories, and your cloned voice stay on your own disk. Nothing is sent to a pumTALK cloud (there is none). If you configure a cloud LLM provider, messages go to that provider for inference only.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">What hardware do I need?</div>
+        <div class="faq-a"><p>An 8GB+ machine is fine for text. For the best voice experience, an NVIDIA GPU (12GB+) is recommended for faster speech and cloning.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Which AI model does it use?</div>
+        <div class="faq-a"><p>It works with Ollama or LM Studio, so you can use any local model you like and swap models freely. Cloud providers (OpenAI, Anthropic) are also supported.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Can it really control my PC?</div>
+        <div class="faq-a"><p>Yes &mdash; files, apps, windows, clipboard, screenshots, OCR, volume/brightness, and more. It runs freely with natural confirmations, but security-critical changes ask for your approval first. Desktop control is opt-in.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">How does it know my location for weather?</div>
+        <div class="faq-a"><p>On first load, pumTALK asks for your browser's geolocation (a normal "allow location" prompt) and uses your real location for weather and forecasts. The desktop app can share the PC's location too.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Does the wake word work with a silent mic?</div>
+        <div class="faq-a"><p>Yes. With wake word enabled, say "Hey Pum" to wake pumTALK even in push-to-talk mode with the mic off.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">How does the license work?</div>
+        <div class="faq-a"><p>You get a 7-day free trial with all features. After the trial, a 3-day grace period follows. Then Voice, Notebook, and Tools are disabled. Basic chat always works. Enter a license key in Settings to restore full features.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">What voice cloning engines are supported?</div>
+        <div class="faq-a"><p>Six engines: F5-TTS (best quality), XTTS v2 (fastest), IndexTTS-2, Chatterbox, FishSpeech, and CosyVoice. Clone in ~15 seconds from a recording or uploaded file.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">What is BYO (Bring Your Own)?</div>
+        <div class="faq-a"><p>pumTALK does <b>not</b> host Ollama, LLMs, or OpenAI APIs. You bring your own &mdash; connect your local Ollama, LM Studio, or any OpenAI-compatible API. On SaaS, we handle voice (STT + TTS); on self-hosted, you run everything.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">What is the difference between Hosted Services and Desktop Edition?</div>
+        <div class="faq-a"><p><b>Desktop Edition / Self-hosted:</b> Install pumTALK on your own hardware, run everything locally. <b>Hosted Services:</b> We host the voice infrastructure (STT + TTS); you connect your own Ollama for the LLM. Both give you the full pumTALK experience.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Can I use it on a server?</div>
+        <div class="faq-a"><p>Yes. pumTALK runs as a systemd service on Linux. Bind to 0.0.0.0 for LAN access with authentication. Docker images are also available.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="separator"></div>
+
+<!-- ──── Final CTA ──── -->
+<section class="section-center">
+  <div class="wrap">
+    <h2 class="reveal" style="font-size:clamp(2rem,4.5vw,3rem)">Own your AI.<br/>Keep your data.</h2>
+    <p class="sub reveal">Start with a 7-day free trial. Two ways to get started: self-hosted (full control) or SaaS (managed voice, you bring Ollama). Your data never leaves your machine.</p>
+    <div class="cta-row reveal">
+      <a class="btn btn-primary btn-lg" href="#pricing">Start free trial</a>
+      <a class="btn btn-ghost btn-lg" href="mailto:simon@pummail.com">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ──── Footer ──── -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="#features">Features</a>
+      <a href="#compare">Compare</a>
+      <a href="#tools">Tools</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="comments.html">Reviews</a>
+      <a href="https://github.com/geekie82/pumtalk">GitHub</a>
+      <a href="mailto:simon@pummail.com">Contact</a>
+    </div>
+    <p>pumTALK &middot; Proprietary software. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// ──── Scroll reveal ────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ──── Nav scroll effect ────
+const nav = document.getElementById('mainNav');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const st = window.scrollY;
+  nav.classList.toggle('scrolled', st > 60);
+  lastScroll = st;
+}, { passive: true });
+
+// ──── Counter animation ────
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.target);
+    if (!target || el.dataset.counted) return;
+    el.dataset.counted = 'true';
+    let current = 0;
+    const step = Math.max(1, Math.floor(target / 30));
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) { current = target; clearInterval(timer); }
+      el.textContent = current;
+    }, 30);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+// ──── FAQ accordion ────
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+// ──── Pricing toggle ────
+document.querySelectorAll('.toggle-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const period = btn.dataset.period;
+    const dp = document.getElementById('desktop-price');
+    const hp = document.getElementById('hosted-price');
+    if (period === 'yearly') {
+      dp.textContent = 'Custom';
+      hp.textContent = 'Custom';
+    } else {
+      dp.textContent = 'Custom';
+      hp.textContent = 'Custom';
+    }
+  });
+});
+
+// ──── Mobile menu toggle ────
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => {
+  const visible = navLinks.style.display === 'flex';
+  navLinks.style.display = visible ? 'none' : 'flex';
+  navLinks.style.flexDirection = 'column';
+  navLinks.style.position = 'absolute';
+  navLinks.style.top = '100%';
+  navLinks.style.left = '0';
+  navLinks.style.right = '0';
+  navLinks.style.background = 'rgba(7,9,15,.95)';
+  navLinks.style.padding = '20px 24px';
+  navLinks.style.gap = '16px';
+  navLinks.style.backdropFilter = 'blur(20px)';
+  navLinks.style.borderBottom = '1px solid var(--border)';
+  navLinks.style.zIndex = '99';
+});
+</script>
 </body>
 </html>
