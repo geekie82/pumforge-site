@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><link rel="icon" type="image/png" href="favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="site.css"><style>.wl-card{max-width:520px;margin:0 auto;text-align:center}.wl-in{width:100%;padding:.8rem 1rem;border-radius:10px;border:1px solid var(--border-strong);background:rgba(255,255,255,.03);color:var(--text);font-size:.95rem;margin:.4rem 0}.wl-btn{border:0;background:var(--green);color:#042018;font-weight:700;padding:.85rem 1.6rem;border-radius:10px;cursor:pointer;font-size:.95rem;width:100%;margin-top:.5rem}.wl-msg{min-height:1.4em;margin-top:.7rem;font-size:.9rem;color:var(--text-dim)}.consent{display:flex;gap:.5rem;align-items:flex-start;text-align:left;font-size:.82rem;color:var(--text-dim);margin-top:.6rem;line-height:1.5}.status{border:1px solid var(--border);border-radius:14px;padding:2rem;margin:2rem auto;max-width:520px;background:linear-gradient(150deg,var(--panel),rgba(17,27,58,.4))}.status h2{margin:0 0 .6rem}.ok{color:var(--green)}.err{color:#ff8a8a}</style><meta name="description" content="Join the pumFORGE waitlist — release dates, platform news and setup tips. Double opt-in, no spam, unsubscribe anytime."><meta property="og:type" content="website"><meta property="og:title" content="Waitlist — pumFORGE"><meta property="og:description" content="Get pumFORGE release + launch info. Double opt-in, no spam."><meta property="og:image" content="https://pumforge.com/og.png"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="https://pumforge.com/waitlist.html"><title>Waitlist — pumFORGE</title></head><body><header class="nav"><div class="container nav-inner"><a href="index.html" class="nav-brand"><img src="pumforge.png" alt="pumFORGE logo — local AI companion"><span>pumFORGE</span></a><nav class="nav-links"><a href="features.html">Features</a><a href="index.html#cowork">Co-worker</a><a href="index.html#screenshots">Screens</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a><a href="cost.html">Cost</a><a href="benchmarks.html">Benchmarks</a><a href="faq.html">FAQ</a><a href="waitlist.html">Waitlist</a><a href="download.html" class="btn btn-primary" style="padding:.6rem 1.2rem;font-size:.88rem">Download</a></nav></div></header><main><section class="hero" style="padding:5.5rem 0 3rem"><div class="container">
+<div class="badge"><span class="dot"></span> Waitlist</div>
+<h1 style="text-align:center">Get <span class="co">launch info.</span></h1>
+<p class="subtitle" style="margin:0 auto">Release dates, platform news and setup tips — sent occasionally, never spam. Double opt-in so you're never subscribed by accident.</p>
+
+<div id="wlStatus" style="display:none"></div>
+
+<div class="wl-card" id="wlCard">
+<p style="font-size:.86rem;color:var(--text-faint);text-align:left">We'll email <b>only</b> release + launch info from <b>noreply@pumforge.com</b>. We store just your email. Unsubscribe with one click, or ask us to delete it — see <a href="privacy.html">Privacy</a>.</p>
+<input class="wl-in" id="wlEmail" type="email" placeholder="you@example.com" aria-label="Email address">
+<label class="consent"><input type="checkbox" id="wlConsent"> I agree to be emailed occasional release + launch information, and understand I can unsubscribe or delete my data at any time.</label>
+<button class="wl-btn" id="wlBtn" onclick="wlSignup()">Notify me</button>
+<p class="wl-msg" id="wlMsg"></p>
+</div>
+</div></section></main>
+
+<footer class="footer"><div class="container footer-inner"><div class="footer-brand"><img src="pumforge.png" alt="pumFORGE logo — local AI companion"><span>pumFORGE</span><span class="copy">© 2026 Madame Hong Ltd. Pty</span></div><div class="footer-links"><a href="https://github.com/geekie82/pumforge">GitHub</a><a href="mailto:support@pumforge.com">Support</a><a href="contact.html">Contact</a><a href="waitlist.html">Waitlist</a><a href="cost.html">Cost</a><a href="benchmarks.html">Benchmarks</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div></footer>
+<script>
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function showStatus(html,ok){var el=document.getElementById("wlStatus");el.style.display="block";el.innerHTML='<div class="status">'+html+'</div>';document.getElementById("wlCard").style.display="none";}
+var q=new URLSearchParams(location.search);
+if(q.get("confirm")){
+  fetch("/api/waitlist/confirm?token="+encodeURIComponent(q.get("confirm")))
+   .then(function(r){return r.text();}).then(function(){showStatus("<h2 class='ok'>You're on the list ✓</h2><p>Confirmed via double opt-in. We'll email only release + launch info.</p>");});
+} else if(q.get("unsub")){
+  fetch("/api/waitlist/unsubscribe?token="+encodeURIComponent(q.get("unsub")))
+   .then(function(r){return r.text();}).then(function(){showStatus("<h2>Unsubscribed</h2><p>Your address was removed from the waitlist and added to our suppression list.</p>");});
+}
+function wlSignup(){
+  var email=document.getElementById("wlEmail").value.trim();var msg=document.getElementById("wlMsg");
+  var consent=document.getElementById("wlConsent").checked;
+  if(!email||!/[^@\s]+@[^@\s]+\.[^@\s]+/.test(email)){msg.textContent="Please enter a valid email.";msg.style.color="#ff8a8a";return;}
+  if(!consent){msg.textContent="Please tick the consent box so we can email you (GDPR).";msg.style.color="#ff8a8a";return;}
+  document.getElementById("wlBtn").textContent="Sending…";
+  fetch("/api/waitlist/signup",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email,consent:true,source:"waitlist-page"})})
+   .then(function(r){return r.json();}).then(function(d){
+    if(d.ok){msg.textContent="Check your inbox to confirm your email (double opt-in).";msg.style.color="#34d399";document.getElementById("wlEmail").value="";}
+    else{msg.textContent=d.error||"Something went wrong.";msg.style.color="#ff8a8a";}
+   }).catch(function(){msg.textContent="Network error — try again.";msg.style.color="#ff8a8a";})
+   .finally(function(){document.getElementById("wlBtn").textContent="Notify me";});
+}
+</script>
+</body></html>

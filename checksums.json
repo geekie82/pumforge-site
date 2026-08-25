@@ -1,3 +1,4 @@
 {
-  "pumforge_1.0.0-rc.1_amd64.deb": "placeholder_checksum_replace_with_real"
+  "pumforge_1.0.0-rc.1_amd64.deb": "fddb0af6b77aba460816234503291064c5a99113c74f79373c4db7ffeb2f87ac",
+  "_note": "Full per-artifact checksums are published on each GitHub release. This file drives the download-page checksum chips; update after each release (scripts/release_build.sh writes them)."
 }
