@@ -46,33 +46,96 @@
       <a href="#cowork" class="btn btn-secondary btn-lg">Meet Forgey</a>
     </div>
     <div class="chips">
-      <span class="chip"><b>108</b> AI tools</span>
-      <span class="chip star">Forgey dev partner</span>
-      <span class="chip">Voice cloning</span>
-      <span class="chip">Local image gen</span>
-      <span class="chip">Hardware monitor</span>
+      <span class="chip static"><b>108</b> AI tools</span>
+      <button type="button" class="chip star active" data-show="forgey">Forgey dev partner</button>
+      <button type="button" class="chip" data-show="voice">Voice cloning</button>
+      <button type="button" class="chip" data-show="image">Local image gen</button>
+      <button type="button" class="chip" data-show="hardware">Hardware monitor</button>
     </div>
 
     <div class="mockup">
       <div class="mockup-glow"></div>
       <div class="mockup-box">
-        <div class="m-bar"><div class="m-dots"><span></span><span></span><span></span></div><span class="m-bar-t">pumFORGE — Terminal · Forgey</span></div>
+        <div class="m-bar"><div class="m-dots"><span></span><span></span><span></span></div><span class="m-bar-t" id="mBarTitle">pumFORGE — Terminal · Forgey</span></div>
         <div class="m-body">
           <div class="m-rail"><div class="r-dot a"></div><div class="r-dot"></div><div class="r-dot"></div><div class="r-dot"></div><div class="r-dot"></div></div>
-          <div class="m-cowork">
-            <div class="m-term">
-              <div class="term-line"><span class="tp">si@ninja ~/talk $</span> du -sh ./* | sort -rh | head</div>
-              <div class="term-line dim">1.2G&nbsp;&nbsp;./models</div>
-              <div class="term-line dim">420M&nbsp;&nbsp;./voices</div>
-              <div class="term-line dim">180M&nbsp;&nbsp;./backend</div>
-              <div class="term-line"><span class="tp">si@ninja ~/talk $</span><span class="caret"></span></div>
+          <div class="m-stages">
+            <div class="m-cowork m-panel active" data-panel="forgey">
+              <div class="m-term">
+                <div class="term-line"><span class="tp">si@ninja ~/talk $</span> du -sh ./* | sort -rh | head</div>
+                <div class="term-line dim">1.2G&nbsp;&nbsp;./models</div>
+                <div class="term-line dim">420M&nbsp;&nbsp;./voices</div>
+                <div class="term-line dim">180M&nbsp;&nbsp;./backend</div>
+                <div class="term-line"><span class="tp">si@ninja ~/talk $</span><span class="caret"></span></div>
+              </div>
+              <div class="m-friend">
+                <div class="wf-head"><span class="wf-ava">pum</span><div><b>Forgey</b><span class="wf-role">Dev partner · supervising</span></div></div>
+                <div class="wf-msg user">find the biggest files and show me a command</div>
+                <div class="wf-msg ai"><span class="wf-tag">Friend</span> Here's a quick one to spot the disk hogs:</div>
+                <div class="wf-cmd"><div class="wf-risk">risk: low</div><div class="wf-code">du -sh ./* | sort -rh | head</div><div class="wf-actions"><span class="wf-btn run">&#9654; Run</span><span class="wf-btn ghost">Dry-Run</span><span class="wf-btn ghost">Copy</span></div></div>
+                <div class="wf-msg ai">Then <b>ls -la</b> for hidden files.</div>
+              </div>
             </div>
-            <div class="m-friend">
-              <div class="wf-head"><span class="wf-ava">pum</span><div><b>Forgey</b><span class="wf-role">Dev partner · supervising</span></div></div>
-              <div class="wf-msg user">find the biggest files and show me a command</div>
-              <div class="wf-msg ai"><span class="wf-tag">Friend</span> Here's a quick one to spot the disk hogs:</div>
-              <div class="wf-cmd"><div class="wf-risk">risk: low</div><div class="wf-code">du -sh ./* | sort -rh | head</div><div class="wf-actions"><span class="wf-btn run">&#9654; Run</span><span class="wf-btn ghost">Dry-Run</span><span class="wf-btn ghost">Copy</span></div></div>
-              <div class="wf-msg ai">Then <b>ls -la</b> for hidden files.</div>
+
+            <div class="m-voice m-panel" data-panel="voice">
+              <div class="mv-library">
+                <div class="mv-head"><b>Voice library</b><span class="mv-chip">6 engines</span></div>
+                <div class="mv-voice"><span class="mv-ava">A</span><div><b>Aria</b><span class="mv-meta">English · cloned</span></div><span class="mv-play">&#9654;</span></div>
+                <div class="mv-voice"><span class="mv-ava">N</span><div><b>Noah</b><span class="mv-meta">English · installed</span></div><span class="mv-play">&#9654;</span></div>
+                <div class="mv-voice"><span class="mv-ava">L</span><div><b>Lina</b><span class="mv-meta">Français · cloned</span></div><span class="mv-play">&#9654;</span></div>
+                <div class="mv-new">
+                  <div class="mv-new-head"><span class="wf-tag">New</span> Clone a new voice</div>
+                  <div class="mv-new-bar"><div class="mv-new-fill"></div></div>
+                  <div class="mv-new-meta">Recording… 12s &nbsp;·&nbsp; stays on-device</div>
+                </div>
+              </div>
+              <div class="mv-clone">
+                <div class="wf-head"><span class="wf-ava">&#127908;</span><div><b>Voice cloning</b><span class="wf-role">15–20s sample · no cloud</span></div></div>
+                <div class="mv-drop"><span class="mv-mic">&#127908;</span><div><b>Drop an audio sample</b><span class="mv-meta">WAV / MP3 / OGG · 15–20 seconds</span></div></div>
+                <div class="mv-engines">
+                  <span class="mv-eng on">Coqui&nbsp;XTT&nbsp;v2</span><span class="mv-eng">OpenVoice</span><span class="mv-eng">Piper</span><span class="mv-eng on">Eleven</span><span class="mv-eng">Tortoise</span><span class="mv-eng">Bark</span>
+                </div>
+                <div class="wf-cmd" style="border-color:rgba(34,211,238,.22);background:rgba(34,211,238,.05)">
+                  <div class="wf-risk" style="color:var(--accent)">ready in ~40s</div>
+                  <div class="mv-ok">&#10003;&nbsp; Voice created — used by Chat, Voice page &amp; Forgey</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="m-image m-panel" data-panel="image">
+              <div class="mi-controls">
+                <div class="wf-head"><span class="wf-ava">&#127912;</span><div><b>Image generation</b><span class="wf-role">pum-sd · 100% local</span></div></div>
+                <div class="mi-prompt">a ninja cat forging a sword, studio light, cinematic</div>
+                <div class="mi-row"><span>Model</span><b class="mi-val">pum-sd XL</b></div>
+                <div class="mi-row"><span>Steps</span><b class="mi-val">28</b><span>Size</span><b class="mi-val">1024×1024</b></div>
+                <div class="mi-row"><span>Seed</span><b class="mi-val">4815</b><span>CFG</span><b class="mi-val">7.0</b></div>
+                <div class="wf-cmd" style="border-color:rgba(34,211,238,.22);background:rgba(34,211,238,.05)">
+                  <div class="wf-risk" style="color:var(--accent)">generating…</div>
+                  <div class="mi-bar"><div class="mi-bar-fill"></div></div>
+                  <div class="mv-meta" style="color:var(--text-faint)">denoising 12/28 · 1.2 it/s</div>
+                </div>
+              </div>
+              <div class="mi-canvas">
+                <div class="mi-img"><div class="mi-img-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><span class="mi-tag">1024×1024 · 1.9s</span></div>
+                <div class="mi-thumbs"><span class="mi-thumb t1"></span><span class="mi-thumb t2"></span><span class="mi-thumb t3"></span></div>
+              </div>
+            </div>
+
+            <div class="m-hardware m-panel" data-panel="hardware">
+              <div class="mh-gauges">
+                <div class="wf-head"><span class="wf-ava">&#128241;</span><div><b>Hardware monitor</b><span class="wf-role">live · every 2s</span></div></div>
+                <div class="mh-g"><div class="mh-g-head"><span>CPU</span><b>42%</b></div><div class="mh-bar"><div class="mh-fill c1" style="width:42%"></div></div></div>
+                <div class="mh-g"><div class="mh-g-head"><span>RAM</span><b>63%</b></div><div class="mh-bar"><div class="mh-fill c2" style="width:63%"></div></div></div>
+                <div class="mh-g"><div class="mh-g-head"><span>VRAM</span><b>71%</b></div><div class="mh-bar"><div class="mh-fill c3" style="width:71%"></div></div></div>
+                <div class="mh-gpu"><span class="mv-ava">&#127959;</span><div><b>NVIDIA GeForce RTX 4080</b><span class="mv-meta">12 GB VRAM · CUDA</span></div><span class="mv-meta">12.0 / 16 GB</span></div>
+              </div>
+              <div class="mh-guardrail">
+                <div class="wf-head"><span class="wf-ava">&#128737;</span><div><b>Load guardrail</b><span class="wf-role">preflight before load</span></div></div>
+                <div class="mv-voice"><span class="mv-ava">G</span><div><b>gemma-4-E4B-it</b><span class="mv-meta">GGUF · Q4_K_M</span></div><span class="mv-meta">7.4 GB</span></div>
+                <div class="mh-g"><div class="mh-g-head"><span>Preflight estimate</span><b>fits (7.4 / 12 GB)</b></div><div class="mh-bar"><div class="mh-fill c3" style="width:62%"></div></div></div>
+                <div class="wf-actions"><span class="wf-btn run">&#9654; Load model</span><span class="wf-btn ghost">Auto-offload</span></div>
+                <div class="mv-meta" style="color:var(--text-faint)">Blocks overloads before they crash your session.</div>
+              </div>
             </div>
           </div>
         </div>
@@ -192,6 +255,17 @@
 // platform tabs
 var cmds={linux:'curl -fsSL https://pumforge.com/install.sh | sh',macos:'curl -fsSL https://pumforge.com/install.sh | sh',windows:'irm https://pumforge.com/install.ps1 | iex'};
 document.querySelectorAll('.platform-tab').forEach(function(t){t.addEventListener('click',function(){document.querySelectorAll('.platform-tab').forEach(function(x){x.classList.remove('active');});t.classList.add('active');document.getElementById('install-cmd').textContent=cmds[t.dataset.platform];});});
+// hero mockup chips → swap the preview panel
+var chipTitles={forgey:'pumFORGE — Terminal · Forgey',voice:'pumFORGE — Voice cloning',image:'pumFORGE — Image generation',hardware:'pumFORGE — Hardware monitor'};
+document.querySelectorAll('.chips .chip[data-show]').forEach(function(c){
+  c.addEventListener('click',function(){
+    var show=c.getAttribute('data-show');
+    document.querySelectorAll('.chips .chip[data-show]').forEach(function(x){x.classList.remove('active');});
+    c.classList.add('active');
+    document.querySelectorAll('.m-panel').forEach(function(p){p.classList.toggle('active',p.getAttribute('data-panel')===show);});
+    var t=document.getElementById('mBarTitle');if(t&&chipTitles[show])t.textContent=chipTitles[show];
+  });
+});
 // checksum
 fetch('checksums.json').then(function(r){return r.json();}).then(function(d){var e=Object.entries(d).find(function(x){return x[0].endsWith('.deb');});if(e)document.getElementById('checksum').textContent=e[1].slice(0,16)+'...';}).catch(function(){});
 </script>
