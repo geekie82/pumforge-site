@@ -7,5 +7,7 @@
   <url><loc>https://pumforge.com/docs.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://pumforge.com/comments.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://pumforge.com/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://pumforge.com/cost.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pumforge.com/benchmarks.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://pumforge.com/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
