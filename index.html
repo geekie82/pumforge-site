@@ -3,271 +3,100 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>pumFORGE — Your AI. Your machine. Your co-worker.</title>
-<meta name="description" content="The all-in-one private local AI assistant. Chat, voice, images, documents, desktop control, a real terminal — and Forgey, your on-device co-worker. Nothing leaves your PC.">
-<link rel="canonical" href="https://pumforge.com/">
+<title>pumFORGE — Your AI. Your machine. Coming soon.</title>
+<meta name="description" content="Your AI. Your machine. Coming soon. Not a chatbot — a co-worker. Join the early access list.">
 <link rel="icon" type="image/png" href="favicon.png">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://pumforge.com/">
-<meta property="og:title" content="pumFORGE — Private Local AI Assistant & Co-worker">
-<meta property="og:description" content="Chat, voice, images, documents, desktop control, a real terminal — and Forgey, your on-device AI co-worker. 100% local, nothing leaves your PC.">
-<meta property="og:image" content="https://pumforge.com/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="pumFORGE — Private Local AI Assistant & Co-worker">
-<meta name="twitter:description" content="Chat, voice, images, documents, desktop control, a real terminal — and Forgey, your on-device AI co-worker.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
-<style>.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+:root { --bg:#0a0e16; --bg2:#0f1420; --ink:#e8edf7; --dim:#8ea0b8; --cyan:#22d3ee; --line:rgba(255,255,255,.09); }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:radial-gradient(60% 50% at 50% 0%, rgba(34,211,238,.10), transparent 60%), var(--bg);
+  color:var(--ink); font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif; min-height:100vh;
+  display:flex; flex-direction:column; align-items:center; padding:48px 20px 40px; }
+.brand { display:flex; align-items:center; gap:12px; font-weight:900; font-size:22px; letter-spacing:-.02em; }
+.mark { width:44px; height:44px; border-radius:13px; display:grid; place-items:center; color:#fff;
+  background:linear-gradient(135deg,#22d3ee,#6366f1); box-shadow:0 8px 24px -8px rgba(34,211,238,.55); }
+.brand em { font-style:normal; color:var(--cyan); }
+h1 { margin:56px 0 0; font-size:clamp(34px,6vw,64px); font-weight:900; letter-spacing:-.03em; text-align:center; line-height:1.05; }
+h1 span { display:block; color:var(--cyan); }
+.sub { margin:18px auto 0; max-width:640px; text-align:center; color:var(--dim); font-size:clamp(15px,2vw,18px); line-height:1.6; }
+.wl { margin:34px auto 0; display:flex; gap:10px; width:min(520px,100%); }
+.wl input[type=email] { flex:1; padding:14px 16px; border-radius:13px; border:1px solid var(--line); background:var(--bg2);
+  color:var(--ink); font-size:15px; outline:none; }
+.wl input[type=email]:focus { border-color:var(--cyan); }
+.wl button { padding:14px 22px; border:0; border-radius:13px; background:linear-gradient(135deg,#22d3ee,#0ea5e9);
+  color:#04121a; font-weight:800; font-size:15px; cursor:pointer; }
+.wl button:disabled { opacity:.6; cursor:default; }
+.consent { margin-top:12px; display:flex; align-items:center; gap:9px; font-size:12.5px; color:var(--dim); }
+.consent input { accent-color:var(--cyan); }
+.wlmsg { margin-top:10px; font-size:13.5px; color:var(--dim); text-align:center; min-height:18px; }
+.wlmsg.ok { color:#34d399; }
+.note { margin-top:8px; font-size:12.5px; color:var(--dim); opacity:.85; text-align:center; }
+.suite { margin:64px auto 0; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; width:min(880px,100%); }
+.tile { position:relative; height:150px; border-radius:18px; border:1px solid var(--line); background:linear-gradient(160deg,#151c2c,#0d1220);
+  display:grid; place-items:center; overflow:hidden; }
+.tile::before { content:""; position:absolute; inset:0; backdrop-filter:blur(7px); background:rgba(10,14,22,.45); }
+.tname { position:relative; font-weight:900; font-size:18px; letter-spacing:.02em; opacity:.55; }
+.tsoon { position:absolute; bottom:14px; right:16px; font-size:12px; color:var(--cyan); opacity:.9; }
+footer { margin-top:64px; display:flex; gap:22px; font-size:13px; color:var(--dim); flex-wrap:wrap; justify-content:center; }
+footer a { color:var(--dim); text-decoration:none; }
+footer a:hover { color:var(--cyan); }
+@media (max-width:560px) { .wl { flex-direction:column; } }
+</style>
 </head>
 <body>
-<header class="nav"><div class="container nav-inner">
-  <a href="index.html" class="nav-brand"><img src="pumforge.png" alt="pumFORGE logo — local AI companion"><span>pumFORGE</span></a>
-  <nav class="nav-links">
-    <a href="features.html">Features</a>
-    <a href="#cowork" class="hide-sm">Co-worker</a>
-    <a href="#screenshots" class="hide-sm">Screens</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="docs.html">Docs</a>
-    <a href="cost.html">Cost</a><a href="benchmarks.html">Benchmarks</a><a href="faq.html">FAQ</a><a href="waitlist.html">Waitlist</a><a href="download.html" class="btn btn-primary" style="padding:.6rem 1.2rem;font-size:.88rem">Download</a>
-  </nav>
-</div></header>
-
-<main>
-<!-- Hero -->
-<section class="hero"><div class="orb a"></div><div class="orb b"></div>
-  <div class="container">
-    <div class="badge"><span class="dot"></span> 100% on-device · no cloud · no accounts</div>
-    <h1>Your AI. Your machine.<br><span class="co">Your co-worker.</span></h1>
-    <p class="hero-sub">One private app for <b>chat, voice, images, documents, desktop control and a real terminal</b> — with <b>Forgey</b>, an on-device dev partner who shares your live shell. Everything runs on your own hardware.</p>
-    <div class="hero-acts">
-      <a href="download.html" class="btn btn-primary btn-lg">Download Free</a>
-      <a href="#cowork" class="btn btn-secondary btn-lg">Meet Forgey</a>
-    </div>
-    <div class="chips">
-      <span class="chip static"><b>108</b> AI tools</span>
-      <button type="button" class="chip star active" data-show="forgey">Forgey dev partner</button>
-      <button type="button" class="chip" data-show="voice">Voice cloning</button>
-      <button type="button" class="chip" data-show="image">Local image gen</button>
-      <button type="button" class="chip" data-show="hardware">Hardware monitor</button>
-    </div>
-
-    <div class="mockup">
-      <div class="mockup-glow"></div>
-      <div class="mockup-box">
-        <div class="m-bar"><div class="m-dots"><span></span><span></span><span></span></div><span class="m-bar-t" id="mBarTitle">pumFORGE — Terminal · Forgey</span></div>
-        <div class="m-body">
-          <div class="m-rail"><div class="r-dot a"></div><div class="r-dot"></div><div class="r-dot"></div><div class="r-dot"></div><div class="r-dot"></div></div>
-          <div class="m-stages">
-            <div class="m-cowork m-panel active" data-panel="forgey">
-              <div class="m-term">
-                <div class="term-line"><span class="tp">si@ninja ~/talk $</span> du -sh ./* | sort -rh | head</div>
-                <div class="term-line dim">1.2G&nbsp;&nbsp;./models</div>
-                <div class="term-line dim">420M&nbsp;&nbsp;./voices</div>
-                <div class="term-line dim">180M&nbsp;&nbsp;./backend</div>
-                <div class="term-line"><span class="tp">si@ninja ~/talk $</span><span class="caret"></span></div>
-              </div>
-              <div class="m-friend">
-                <div class="wf-head"><span class="wf-ava">pum</span><div><b>Forgey</b><span class="wf-role">Dev partner · supervising</span></div></div>
-                <div class="wf-msg user">find the biggest files and show me a command</div>
-                <div class="wf-msg ai"><span class="wf-tag">Friend</span> Here's a quick one to spot the disk hogs:</div>
-                <div class="wf-cmd"><div class="wf-risk">risk: low</div><div class="wf-code">du -sh ./* | sort -rh | head</div><div class="wf-actions"><span class="wf-btn run">&#9654; Run</span><span class="wf-btn ghost">Dry-Run</span><span class="wf-btn ghost">Copy</span></div></div>
-                <div class="wf-msg ai">Then <b>ls -la</b> for hidden files.</div>
-              </div>
-            </div>
-
-            <div class="m-voice m-panel" data-panel="voice">
-              <div class="mv-library">
-                <div class="mv-head"><b>Voice library</b><span class="mv-chip">6 engines</span></div>
-                <div class="mv-voice"><span class="mv-ava">A</span><div><b>Aria</b><span class="mv-meta">English · cloned</span></div><span class="mv-play">&#9654;</span></div>
-                <div class="mv-voice"><span class="mv-ava">N</span><div><b>Noah</b><span class="mv-meta">English · installed</span></div><span class="mv-play">&#9654;</span></div>
-                <div class="mv-voice"><span class="mv-ava">L</span><div><b>Lina</b><span class="mv-meta">Français · cloned</span></div><span class="mv-play">&#9654;</span></div>
-                <div class="mv-new">
-                  <div class="mv-new-head"><span class="wf-tag">New</span> Clone a new voice</div>
-                  <div class="mv-new-bar"><div class="mv-new-fill"></div></div>
-                  <div class="mv-new-meta">Recording… 12s &nbsp;·&nbsp; stays on-device</div>
-                </div>
-              </div>
-              <div class="mv-clone">
-                <div class="wf-head"><span class="wf-ava">&#127908;</span><div><b>Voice cloning</b><span class="wf-role">15–20s sample · no cloud</span></div></div>
-                <div class="mv-drop"><span class="mv-mic">&#127908;</span><div><b>Drop an audio sample</b><span class="mv-meta">WAV / MP3 / OGG · 15–20 seconds</span></div></div>
-                <div class="mv-engines">
-                  <span class="mv-eng on">Coqui&nbsp;XTT&nbsp;v2</span><span class="mv-eng">OpenVoice</span><span class="mv-eng">Piper</span><span class="mv-eng on">Eleven</span><span class="mv-eng">Tortoise</span><span class="mv-eng">Bark</span>
-                </div>
-                <div class="wf-cmd" style="border-color:rgba(34,211,238,.22);background:rgba(34,211,238,.05)">
-                  <div class="wf-risk" style="color:var(--accent)">ready in ~40s</div>
-                  <div class="mv-ok">&#10003;&nbsp; Voice created — used by Chat, Voice page &amp; Forgey</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="m-image m-panel" data-panel="image">
-              <div class="mi-controls">
-                <div class="wf-head"><span class="wf-ava">&#127912;</span><div><b>Image generation</b><span class="wf-role">pum-sd · 100% local</span></div></div>
-                <div class="mi-prompt">a ninja cat forging a sword, studio light, cinematic</div>
-                <div class="mi-row"><span>Model</span><b class="mi-val">pum-sd XL</b></div>
-                <div class="mi-row"><span>Steps</span><b class="mi-val">28</b><span>Size</span><b class="mi-val">1024×1024</b></div>
-                <div class="mi-row"><span>Seed</span><b class="mi-val">4815</b><span>CFG</span><b class="mi-val">7.0</b></div>
-                <div class="wf-cmd" style="border-color:rgba(34,211,238,.22);background:rgba(34,211,238,.05)">
-                  <div class="wf-risk" style="color:var(--accent)">generating…</div>
-                  <div class="mi-bar"><div class="mi-bar-fill"></div></div>
-                  <div class="mv-meta" style="color:var(--text-faint)">denoising 12/28 · 1.2 it/s</div>
-                </div>
-              </div>
-              <div class="mi-canvas">
-                <div class="mi-img"><div class="mi-img-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><span class="mi-tag">1024×1024 · 1.9s</span></div>
-                <div class="mi-thumbs"><span class="mi-thumb t1"></span><span class="mi-thumb t2"></span><span class="mi-thumb t3"></span></div>
-              </div>
-            </div>
-
-            <div class="m-hardware m-panel" data-panel="hardware">
-              <div class="mh-gauges">
-                <div class="wf-head"><span class="wf-ava">&#128241;</span><div><b>Hardware monitor</b><span class="wf-role">live · every 2s</span></div></div>
-                <div class="mh-g"><div class="mh-g-head"><span>CPU</span><b>42%</b></div><div class="mh-bar"><div class="mh-fill c1" style="width:42%"></div></div></div>
-                <div class="mh-g"><div class="mh-g-head"><span>RAM</span><b>63%</b></div><div class="mh-bar"><div class="mh-fill c2" style="width:63%"></div></div></div>
-                <div class="mh-g"><div class="mh-g-head"><span>VRAM</span><b>71%</b></div><div class="mh-bar"><div class="mh-fill c3" style="width:71%"></div></div></div>
-                <div class="mh-gpu"><span class="mv-ava">&#127959;</span><div><b>NVIDIA GeForce RTX 4080</b><span class="mv-meta">12 GB VRAM · CUDA</span></div><span class="mv-meta">12.0 / 16 GB</span></div>
-              </div>
-              <div class="mh-guardrail">
-                <div class="wf-head"><span class="wf-ava">&#128737;</span><div><b>Load guardrail</b><span class="wf-role">preflight before load</span></div></div>
-                <div class="mv-voice"><span class="mv-ava">G</span><div><b>gemma-4-E4B-it</b><span class="mv-meta">GGUF · Q4_K_M</span></div><span class="mv-meta">7.4 GB</span></div>
-                <div class="mh-g"><div class="mh-g-head"><span>Preflight estimate</span><b>fits (7.4 / 12 GB)</b></div><div class="mh-bar"><div class="mh-fill c3" style="width:62%"></div></div></div>
-                <div class="wf-actions"><span class="wf-btn run">&#9654; Load model</span><span class="wf-btn ghost">Auto-offload</span></div>
-                <div class="mv-meta" style="color:var(--text-faint)">Blocks overloads before they crash your session.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Stats -->
-<section class="stats"><div class="container"><div class="stats-grid">
-  <div class="stat"><div class="n">108</div><div class="l">Built-in AI tools</div></div>
-  <div class="stat"><div class="n">6</div><div class="l">Voice cloning engines</div></div>
-  <div class="stat"><div class="n">0%</div><div class="l">Data leaves your machine</div></div>
-  <div class="stat"><div class="n">3</div><div class="l">Minutes to install</div></div>
-</div></div></section>
-
-<!-- Co-worker -->
-<section id="cowork"><div class="container">
-  <p class="section-title">The headline feature</p>
-  <h2>Meet Forgey — your AI <em>co-worker</em>.</h2>
-  <p class="subtitle">Not a chatbot. A teammate who shares your live shell, watches the repo, and helps you build — without ever leaving your machine.</p>
-  <div class="cw-feature" style="margin-top:3rem">
-    <div>
-      <h3>One shell. Two collaborators.</h3>
-      <p>Forgey sees your current directory, your recent terminal output and your repo index — so it answers about the real state of your session, not a guess. It proposes real shell commands with a Run / Dry-Run / Copy button and a risk tag. Nothing executes without you.</p>
-      <div class="cw-steps">
-        <div class="cw-step"><span class="n">1</span><div><b>You ask</b><p>In plain English. "Find the biggest files", "explain the last error", "what should I run next?"</p></div></div>
-        <div class="cw-step"><span class="n">2</span><div><b>Forgey proposes</b><p>A real command, tagged with its risk, ready to run or preview read-only.</p></div></div>
-        <div class="cw-step"><span class="n">3</span><div><b>You approve</b><p>Run once, Trust always, or Cancel. A suggestion-only lock keeps it hands-off.</p></div></div>
-      </div>
-    </div>
-    <div class="grid grid-2">
-      <div class="feature"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>Shared context</h3><p>cwd, recent output and repo — Forgey knows where you are.</p></div>
-      <div class="feature"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Consent-first</h3><p>Risky actions always ask — Run once, Trust always, Cancel.</p></div>
-      <div class="feature"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg></div><h3>Dry-Run prep</h3><p>Preview any command in a read-only sandbox first.</p></div>
-      <div class="feature"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg></div><h3>Patch &amp; PR</h3><p>Unified diffs, temp-branch apply, test gate and rollback built in.</p></div>
-    </div>
-  </div>
-</div></section>
-
-<!-- Screenshots -->
-<section id="screenshots" style="background:linear-gradient(180deg,transparent,rgba(13,22,48,.4))"><div class="container">
-  <div class="center"><p class="section-title" style="justify-content:center">See it in action</p><h2>A look inside pumFORGE</h2><p class="subtitle">Real screenshots from the running app — including Forgey in the shared terminal.</p></div>
-  <div class="shot-grid">
-    <figure class="shot"><img src="workfriend.png" alt="Forgey — AI co-worker in the shared terminal" loading="lazy"><figcaption><b>Forgey — AI co-worker</b><span>A dev partner sharing your live terminal, with consent-gated command cards.</span></figcaption></figure>
-    <figure class="shot"><img src="chat.png" alt="Chat with streaming markdown and code blocks" loading="lazy"><figcaption><b>Chat</b><span>Streaming conversations with markdown, code blocks, and tools.</span></figcaption></figure>
-    <figure class="shot"><img src="settings.png" alt="Settings Hub" loading="lazy"><figcaption><b>Settings Hub</b><span>Twelve categories + a live hardware monitor and per-section saves.</span></figcaption></figure>
-    <figure class="shot"><img src="terminal.png" alt="Terminal" loading="lazy"><figcaption><b>Terminal</b><span>A real terminal — run commands, code, and SSH.</span></figcaption></figure>
-  </div>
-</div></section>
-
-<!-- Features -->
-<section id="features"><div class="container">
-  <div class="center"><p class="section-title" style="justify-content:center">Features</p><h2>One app. Every AI capability.</h2><p class="subtitle">Chat, voice, images, documents, desktop control, terminal, coding — and an AI co-worker — in one private package.</p></div>
-  <div class="grid grid-3" style="margin-top:3rem">
-    <div class="feature"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>Chat</h3><p>Talk to local models. Streaming markdown, code highlighting, and context across sessions. No internet required.</p></div>
-    <div class="feature"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></div><h3>Voice &amp; cloning</h3><p>Real-time voice with wake word and barge-in. Clone any voice from 15 seconds with 6 engines.</p></div>
-    <div class="feature"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div><h3>Terminal + Forgey</h3><p>Full PTY terminal with SSH, plus Forgey sharing your live shell proposing consent-gated commands.</p></div>
-    <div class="feature"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="9" x2="22" y2="9"/><circle cx="8" cy="14" r="1"/></svg></div><h3>Desktop control</h3><p>41 tools: open apps, manage files, screenshots, OCR, batch rename, volume and brightness.</p></div>
-    <div class="feature"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><h3>Knowledge base</h3><p>Chat with your documents. PDFs, notes, websites, YouTube, audio — indexed locally with RAG and citations.</p></div>
-    <div class="feature"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div><h3>Image generation</h3><p>Generate and edit images locally with pum-sd — no API keys, no cloud, no limits.</p></div>
-    <div class="feature"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><h3>Hardware monitor</h3><p>Live CPU, RAM and VRAM usage, detected GPUs, and model-load guardrails with preflight estimates.</p></div>
-    <div class="feature"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg></div><h3>108 AI tools</h3><p>Weather, web search, email, stocks, YouTube transcripts, arXiv, calculator, and more — all local.</p></div>
-    <div class="feature"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Always private</h3><p>No telemetry. No cloud. No data harvesting. Everything stays on your disk.</p></div>
-  </div>
-</div></section>
-
-<!-- Compare -->
-<section id="compare" style="background:var(--surface)"><div class="container">
-  <div class="center"><p class="section-title" style="justify-content:center">Head to head</p><h2>How pumFORGE stacks up</h2><p class="subtitle">Most local AI tools are chat boxes. pumFORGE is a complete workbench.</p></div>
-  <div class="cmp-wrap" style="margin-top:2.8rem"><table class="cmp">
-    <thead><tr><th>Feature</th><th class="pf">pumFORGE</th><th>Local AI apps</th><th>Cloud AI</th></tr></thead>
-    <tbody>
-      <tr><td>AI co-worker in terminal</td><td class="pf">Forgey</td><td class="cx">No</td><td class="cx">No</td></tr>
-      <tr><td>Voice cloning</td><td class="pf">6 engines</td><td class="cx">0</td><td>1–3 (paid)</td></tr>
-      <tr><td>Live hardware monitor</td><td class="pf">CPU/RAM/VRAM</td><td class="cx">No</td><td class="cx">No</td></tr>
-      <tr><td>Desktop control</td><td class="pf">41 tools</td><td>0–10</td><td class="cx">0</td></tr>
-      <tr><td>Coding suite</td><td class="pf">27 tools</td><td class="cx">0</td><td>Basic</td></tr>
-      <tr><td>Notebook + RAG</td><td class="pf">Yes + citations</td><td>Basic RAG</td><td>Yes (cloud)</td></tr>
-      <tr><td>Document creation</td><td class="pf">DOCX/XLSX/PPTX/PDF</td><td class="cx">No</td><td>Limited</td></tr>
-      <tr><td>LLM council</td><td class="pf">Yes</td><td class="cx">No</td><td class="cx">No</td></tr>
-      <tr><td>Runs offline</td><td class="pf">100%</td><td>Yes</td><td class="cx">No</td></tr>
-      <tr><td>Data stays local</td><td class="pf">Always</td><td>Yes</td><td class="cx">No</td></tr>
-      <tr><td>Real terminal + SSH</td><td class="pf">Yes</td><td class="cx">No</td><td class="cx">No</td></tr>
-      <tr><td>Image generation</td><td class="pf">Local</td><td class="cx">No</td><td>Cloud only</td></tr>
-    </tbody>
-  </table></div>
-</div></section>
-
-<!-- Download -->
-<section id="download"><div class="container center">
-  <p class="section-title" style="justify-content:center">Download</p>
-  <h2>Up and running in 60 seconds.</h2>
-  <p class="subtitle">One install. No account. No cloud. Your AI starts local.</p>
-  <div class="platform-tabs" style="margin-top:2rem">
-    <button class="btn btn-secondary platform-tab active" data-platform="linux" style="padding:.5rem 1.5rem">Linux</button>
-    <button class="btn btn-secondary platform-tab" data-platform="macos" style="padding:.5rem 1.5rem">macOS</button>
-    <button class="btn btn-secondary platform-tab" data-platform="windows" style="padding:.5rem 1.5rem">Windows</button>
-  </div>
-  <div class="install-cmd"><code id="install-cmd">curl -fsSL https://pumforge.com/install.sh | sh</code><button onclick="navigator.clipboard.writeText(document.getElementById('install-cmd').textContent)" class="install-copy" title="Copy">📋</button></div>
-  <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap">
-    <a href="https://github.com/geekie82/pumforge/releases/latest" class="btn btn-primary">Download .deb</a>
-    <a href="https://github.com/geekie82/pumforge" class="btn btn-secondary">View on GitHub</a>
-  </div>
-  <p style="margin-top:1.5rem;color:var(--text-faint);font-size:.78rem">SHA256: <code id="checksum" style="color:var(--text-dim)">Loading...</code></p>
-</div></section>
-</main>
-
-<footer class="footer"><div class="container footer-inner">
-  <div class="footer-brand"><img src="pumforge.png" alt="pumFORGE logo — local AI companion"><span>pumFORGE</span><span class="copy">© 2026 Madame Hong Ltd. Pty</span></div>
-  <div class="footer-links"><a href="https://github.com/geekie82/pumforge">GitHub</a><a href="mailto:support@pumforge.com">Support</a><a href="contact.html">Contact</a><a href="waitlist.html">Waitlist</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
-</div></footer>
-
+<div class="brand"><span class="mark">✦</span>pum<em>FORGE</em></div>
+<h1>Your AI. Your machine.<span>Coming soon.</span></h1>
+<p class="sub">Not a chatbot. A co-worker. Forgey arrives in weeks.</p>
+<form class="wl" id="wlForm">
+  <input type="email" id="wlEmail" placeholder="you@example.com" aria-label="Email address" required>
+  <button type="submit" id="wlBtn">Join the waitlist</button>
+</form>
+<label class="consent"><input type="checkbox" id="wlConsent"> Email me launch updates — no spam, unsubscribe anytime.</label>
+<div class="wlmsg" id="wlMsg"></div>
+<div class="note">Launch window announced soon — founding members get first seats.</div>
+<div class="suite"><div class="tile"><span class="tname">pumOFFICE</span><span class="tsoon">coming soon…</span></div><div class="tile"><span class="tname">pumMAIL</span><span class="tsoon">coming soon…</span></div><div class="tile"><span class="tname">pumCLOUD</span><span class="tsoon">coming soon…</span></div></div>
+<footer>
+  <a href="https://pumoffice.com/about.html">Story</a>
+  <a href="https://pumoffice.com/privacy.html">Privacy</a>
+  <a href="https://pumoffice.com/login">Member sign-in</a>
+  <span>© pum</span>
+</footer>
 <script>
-// reveal on scroll
-(function(){var els=document.querySelectorAll('.reveal');if('IntersectionObserver'in window){var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});els.forEach(function(e){io.observe(e);});setTimeout(function(){els.forEach(function(e){e.classList.add('in');});},2600);}else{els.forEach(function(e){e.classList.add('in');});}})();
-// platform tabs
-var cmds={linux:'curl -fsSL https://pumforge.com/install.sh | sh',macos:'curl -fsSL https://pumforge.com/install.sh | sh',windows:'irm https://pumforge.com/install.ps1 | iex'};
-document.querySelectorAll('.platform-tab').forEach(function(t){t.addEventListener('click',function(){document.querySelectorAll('.platform-tab').forEach(function(x){x.classList.remove('active');});t.classList.add('active');document.getElementById('install-cmd').textContent=cmds[t.dataset.platform];});});
-// hero mockup chips → swap the preview panel
-var chipTitles={forgey:'pumFORGE — Terminal · Forgey',voice:'pumFORGE — Voice cloning',image:'pumFORGE — Image generation',hardware:'pumFORGE — Hardware monitor'};
-document.querySelectorAll('.chips .chip[data-show]').forEach(function(c){
-  c.addEventListener('click',function(){
-    var show=c.getAttribute('data-show');
-    document.querySelectorAll('.chips .chip[data-show]').forEach(function(x){x.classList.remove('active');});
-    c.classList.add('active');
-    document.querySelectorAll('.m-panel').forEach(function(p){p.classList.toggle('active',p.getAttribute('data-panel')===show);});
-    var t=document.getElementById('mBarTitle');if(t&&chipTitles[show])t.textContent=chipTitles[show];
+(function () {
+  var f = document.getElementById('wlForm'), e = document.getElementById('wlEmail'),
+      c = document.getElementById('wlConsent'), b = document.getElementById('wlBtn'),
+      m = document.getElementById('wlMsg');
+  f.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var email = (e.value || '').trim();
+    if (!email) return;
+    if (!c.checked) { m.className = 'wlmsg'; m.textContent = 'Please tick the box so we may email you.'; return; }
+    b.disabled = true; m.className = 'wlmsg'; m.textContent = 'Joining…';
+    fetch('https://pumoffice.com/api/waitlist/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, consent: true, source: 'pumforge.com' })
+    }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        var j = res.j || {};
+        if (res.ok && j.ok && j.on_list) {
+          m.className = 'wlmsg ok';
+          m.textContent = "You're on the list — #" + j.count + ' in line. We will email you when seats open.';
+          e.value = ''; c.checked = false;
+        } else if (res.ok && j.ok && j.pending_confirm) {
+          m.className = 'wlmsg ok';
+          m.textContent = 'Almost there — check your inbox to confirm your spot.';
+          e.value = ''; c.checked = false;
+        } else {
+          m.textContent = j.error || j.detail || 'Something went wrong — try again.';
+        }
+      }).catch(function () { m.textContent = 'Network error — try again.'; })
+      .finally(function () { b.disabled = false; });
   });
-});
-// checksum
-fetch('checksums.json').then(function(r){return r.json();}).then(function(d){var e=Object.entries(d).find(function(x){return x[0].endsWith('.deb');});if(e)document.getElementById('checksum').textContent=e[1].slice(0,16)+'...';}).catch(function(){});
+})();
 </script>
 </body>
 </html>
