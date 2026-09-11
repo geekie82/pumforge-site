@@ -34,10 +34,10 @@ h1 span { display:block; color:var(--cyan); }
 .wlmsg { margin-top:10px; font-size:13.5px; color:var(--dim); text-align:center; min-height:18px; }
 .wlmsg.ok { color:#34d399; }
 .note { margin-top:8px; font-size:12.5px; color:var(--dim); opacity:.85; text-align:center; }
-section { margin-top:72px; width:100%; max-width:1000px; }
+section { margin-top:72px; width:100%; max-width:1080px; }
 h2 { margin:0 0 8px; font-size:clamp(24px,3.6vw,38px); font-weight:900; letter-spacing:-.02em; text-align:center; }
 .lead { color:var(--dim); text-align:center; max-width:640px; margin:0 auto 26px; font-size:14.5px; line-height:1.6; }
-.plans { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
+.plans { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; }
 .plan { border:1px solid var(--line); border-radius:18px; padding:20px; background:linear-gradient(170deg,#111827,#0b101c); display:flex; flex-direction:column; gap:8px; }
 .plan.hot { border-color:rgba(34,211,238,.55); box-shadow:0 12px 34px -18px rgba(34,211,238,.5); }
 .plan .tag { font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--dim); }
@@ -48,6 +48,12 @@ h2 { margin:0 0 8px; font-size:clamp(24px,3.6vw,38px); font-weight:900; letter-s
 .plan li b { color:var(--ink); }
 .addons { margin-top:14px; border:1px dashed rgba(34,211,238,.35); border-radius:16px; padding:16px 18px; display:flex; flex-wrap:wrap; gap:10px 26px; justify-content:center; font-size:13.5px; color:var(--dim); }
 .addons b { color:var(--cyan); }
+.student { margin-top:16px; border:1px solid var(--line); border-radius:16px; padding:16px 18px; text-align:center; }
+.st-head { font-size:13.5px; color:var(--dim); margin-bottom:10px; }
+.st-form { display:flex; gap:10px; width:min(480px,100%); margin:0 auto; }
+.st-form input { flex:1; padding:12px 14px; border-radius:12px; border:1px solid var(--line); background:var(--bg2); color:var(--ink); font-size:14px; outline:none; }
+.st-form input:focus { border-color:var(--cyan); }
+.st-form button { padding:12px 20px; border:0; border-radius:12px; background:linear-gradient(135deg,#22d3ee,#0ea5e9); color:#04121a; font-weight:800; font-size:14px; cursor:pointer; }
 .grid2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
 .item { border:1px solid var(--line); border-radius:14px; padding:14px 16px; background:rgba(255,255,255,.02); }
 .item b { display:block; margin-bottom:4px; font-size:14px; }
@@ -75,12 +81,14 @@ footer a:hover { color:var(--cyan); }
 <div class="wlmsg" id="wlMsg"></div>
 <div class="note">Launch window announced soon — founding members get first seats.</div>
 
-<section>
+<section id="pricing">
   <h2>Simple, honest pricing</h2>
   <p class="lead">Free is a real office — never crippled. Paid plans pay for infrastructure and extra capacity, with the AI cost printed on the label. No &ldquo;unlimited*&rdquo;.</p>
   <div class="plans">
     <div class="plan"><span class="tag">Free</span><div class="price">$0</div>
       <ul><li><b>500 MB</b> storage</li><li>Docs &middot; Sheets &middot; Slides</li><li><b>5 AI calls</b> / month</li><li>1 seat &middot; no card</li></ul></div>
+    <div class="plan"><span class="tag">Student</span><div class="price">Free <small>with school email</small></div>
+      <ul><li><b>5 GB</b> storage</li><li>Everything unlocked</li><li><b>100 AI calls</b> / month</li><li>Verified yearly</li></ul></div>
     <div class="plan hot"><span class="tag">Starter</span><div class="price">$3 <small>/ user / month</small></div>
       <ul><li><b>60 GB</b> storage</li><li>Everything in Free</li><li><b>30 AI calls</b> / month</li><li>Mail included &middot; 1 seat</li></ul></div>
     <div class="plan"><span class="tag">Growth</span><div class="price">$6 <small>/ user / month</small></div>
@@ -89,6 +97,14 @@ footer a:hover { color:var(--cyan); }
       <ul><li><b>240 GB</b> storage</li><li>Everything in Growth</li><li><b>30 AI calls</b> / month</li><li>Priority support</li></ul></div>
   </div>
   <div class="addons"><span><b>AI Power +$3</b> &mdash; 575 calls / month</span><span><b>AI Power +$6</b> &mdash; 1,150 calls / month</span><span><b>AI Power +$9</b> &mdash; 1,725 calls / month</span></div>
+  <div class="student">
+    <div class="st-head"><b>Students</b> &mdash; free with your school email (5 GB &middot; everything unlocked &middot; 100 AI calls/month)</div>
+    <form class="st-form" id="stForm">
+      <input type="email" id="stEmail" placeholder="you@school.edu" aria-label="School email" required>
+      <button type="submit" id="stBtn">Apply</button>
+    </form>
+    <div class="wlmsg" id="stMsg"></div>
+  </div>
 </section>
 <section>
   <h2>What we do different</h2>
@@ -154,6 +170,26 @@ footer a:hover { color:var(--cyan); }
       }).catch(function () { m.textContent = 'Network error — try again.'; })
       .finally(function () { b.disabled = false; });
   });
+  var sf = document.getElementById('stForm');
+  if (sf) {
+    sf.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var se = document.getElementById('stEmail'), sb = document.getElementById('stBtn'), sm = document.getElementById('stMsg');
+      var email = (se.value || '').trim();
+      if (!email) return;
+      sb.disabled = true; sm.className = 'wlmsg'; sm.textContent = 'Sending…';
+      fetch('https://pumoffice.com/api/student/apply', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (res) {
+          var j = res.j || {};
+          if (res.ok && j.ok) { sm.className = 'wlmsg ok'; sm.textContent = j.note || 'Application received.'; se.value = ''; }
+          else { sm.textContent = j.detail || j.error || 'Something went wrong — try again.'; }
+        }).catch(function () { sm.textContent = 'Network error — try again.'; })
+        .finally(function () { sb.disabled = false; });
+    });
+  }
 })();
 </script>
 </body>
